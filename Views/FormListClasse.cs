@@ -10,24 +10,19 @@ using System.Windows.Forms;
 
 namespace GestionClasse.Views
 {
-    public partial class FormMenu : Form
+    public partial class FormListClasse : Form
     {
-        public FormMenu()
+        public FormListClasse()
         {
             InitializeComponent();
         }
 
-        private void BtnClasse_Click(object sender, EventArgs e)
+        private void DgvClasse_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void BtnEleve_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnProf_Click(object sender, EventArgs e)
+        private void BtnRetour_Click(object sender, EventArgs e)
         {
 
         }

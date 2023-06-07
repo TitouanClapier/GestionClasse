@@ -28,18 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
+            BtnClasse = new Button();
+            BtnEleve = new Button();
+            BtnProf = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
-            // Form1
+            // BtnClasse
+            // 
+            BtnClasse.Location = new Point(524, 154);
+            BtnClasse.Name = "BtnClasse";
+            BtnClasse.Size = new Size(180, 55);
+            BtnClasse.TabIndex = 0;
+            BtnClasse.Text = "Gestion des classes";
+            BtnClasse.UseVisualStyleBackColor = true;
+            BtnClasse.Click += BtnClasse_Click;
+            // 
+            // BtnEleve
+            // 
+            BtnEleve.Location = new Point(524, 248);
+            BtnEleve.Name = "BtnEleve";
+            BtnEleve.Size = new Size(180, 55);
+            BtnEleve.TabIndex = 1;
+            BtnEleve.Text = "Gestion des éleves";
+            BtnEleve.UseVisualStyleBackColor = true;
+            BtnEleve.Click += BtnEleve_Click;
+            // 
+            // BtnProf
+            // 
+            BtnProf.Location = new Point(524, 342);
+            BtnProf.Name = "BtnProf";
+            BtnProf.Size = new Size(180, 57);
+            BtnProf.TabIndex = 2;
+            BtnProf.Text = "Gestion des professeurs";
+            BtnProf.UseVisualStyleBackColor = true;
+            BtnProf.Click += BtnProf_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.ControlLightLight;
+            label1.Location = new Point(563, 49);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 20);
+            label1.TabIndex = 3;
+            label1.Text = "GestionClasse";
+            // 
+            // FormMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1200, 520);
-            Name = "Form1";
+            Controls.Add(label1);
+            Controls.Add(BtnProf);
+            Controls.Add(BtnEleve);
+            Controls.Add(BtnClasse);
+            Name = "FormMenu";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Button BtnClasse;
+        private Button BtnEleve;
+        private Button BtnProf;
+        private Label label1;
     }
 }

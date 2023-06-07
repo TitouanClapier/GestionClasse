@@ -10,24 +10,14 @@ using System.Windows.Forms;
 
 namespace GestionClasse.Views
 {
-    public partial class FormMenu : Form
+    public partial class FormListProf : Form
     {
-        public FormMenu()
+        public FormListProf()
         {
             InitializeComponent();
         }
 
-        private void BtnClasse_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnEleve_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnProf_Click(object sender, EventArgs e)
+        private void BtnRetour_Click(object sender, EventArgs e)
         {
 
         }
