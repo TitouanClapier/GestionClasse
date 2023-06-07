@@ -1,53 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestionClasse.Views
 {
     public class Matiere
     {
-        private int _idMatiere;
-        private string _nom;
-        private int _idProf;
+        public int IdMatiere { get; set; }
+        public string Nom { get; set; }
+        public int IdProf { get; set; }
+
+        public Matiere()
+        {
+
+        }
 
         public Matiere(int idMatiere, string nom, int idProf)
         {
-            _idMatiere = idMatiere;
-            _nom = nom;
-            _idProf = idProf;
+            IdMatiere = idMatiere;
+            Nom = nom;
+            IdProf = idProf;
         }
 
         public int GetIdMatiere()
         {
-            return _idMatiere;
+            return IdMatiere;
         }
 
-        public void SetIdMatiere(int value)
+        public void SetIdMatiere(int idMatiere)
         {
-            _idMatiere = value;
+            IdMatiere = idMatiere;
         }
 
         public string GetNom()
         {
-            return _nom;
+            return Nom;
         }
 
-        public void SetNom(string value)
+        public void SetNom(string nom)
         {
-            _nom = value;
+            Nom = nom;
         }
 
         public int GetIdProf()
         {
-            return _idProf;
+            return IdProf;
         }
 
-        public void SetIdProf(int value)
+        public void SetIdProf(int idProf)
         {
-            _idProf = value;
+            IdProf = idProf;
         }
     }
-
 }

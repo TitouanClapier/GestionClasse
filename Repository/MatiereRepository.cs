@@ -14,7 +14,7 @@ namespace GestionClasse.Repository
 
         public List<Matiere> FindAll()
         {
-            List<Matiere> lesMatieres = new List<Matiere>();
+            List<Matiere> matieres = new List<Matiere>();
 
             string connectionString = "Data Source=../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -32,7 +32,7 @@ namespace GestionClasse.Repository
                             string nom = Convert.ToString(reader["Nom"]);
                             int idProf = Convert.ToInt32(reader["IdProf"]);
 
-                            lesMatieres.Add(new Matiere(idMatiere, nom, idProf));
+                            matieres.Add(new Matiere(idMatiere, nom, idProf));
                         }
                     }
                 }
@@ -40,7 +40,7 @@ namespace GestionClasse.Repository
                 connection.Close();
             }
 
-            return lesMatieres;
+            return matieres;
         }
 
         public void Create(string nom, int idProf)
@@ -64,18 +64,18 @@ namespace GestionClasse.Repository
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int idMatiere)
         {
             string connectionString = "Data Source=../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string deleteSql = "DELETE FROM Matiere WHERE IdMatiere = @Id";
+                string deleteSql = "DELETE FROM Matiere WHERE IdMatiere = @IdMatiere";
 
                 connection.Open();
 
                 using (SQLiteCommand command = new SQLiteCommand(deleteSql, connection))
                 {
-                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@IdMatiere", idMatiere);
 
                     command.ExecuteNonQuery();
                 }
@@ -84,18 +84,18 @@ namespace GestionClasse.Repository
             }
         }
 
-        public void Update(int id, string nom, int idProf)
+        public void Update(int idMatiere, string nom, int idProf)
         {
             string connectionString = "Data Source=../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string updateSql = "UPDATE Matiere SET Nom = @Nom, IdProf = @IdProf WHERE IdMatiere = @Id";
+                string updateSql = "UPDATE Matiere SET Nom = @Nom, IdProf = @IdProf WHERE IdMatiere = @IdMatiere";
 
                 connection.Open();
 
                 using (SQLiteCommand command = new SQLiteCommand(updateSql, connection))
                 {
-                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@IdMatiere", idMatiere);
                     command.Parameters.AddWithValue("@Nom", nom);
                     command.Parameters.AddWithValue("@IdProf", idProf);
 
@@ -106,18 +106,18 @@ namespace GestionClasse.Repository
             }
         }
 
-        public Matiere GetInfo(int id)
+        public Matiere GetInfo(int idMatiere)
         {
             string connectionString = "Data Source=../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string selectSql = "SELECT * FROM Matiere WHERE IdMatiere = @Id";
+                string selectSql = "SELECT * FROM Matiere WHERE IdMatiere = @IdMatiere";
 
                 connection.Open();
 
                 using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
                 {
-                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@IdMatiere", idMatiere);
 
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
@@ -126,7 +126,7 @@ namespace GestionClasse.Repository
                             string nom = Convert.ToString(reader["Nom"]);
                             int idProf = Convert.ToInt32(reader["IdProf"]);
 
-                            return new Matiere(id, nom, idProf);
+                            return new Matiere(idMatiere, nom, idProf);
                         }
                     }
                 }
@@ -134,7 +134,7 @@ namespace GestionClasse.Repository
                 connection.Close();
             }
 
-            return null;
+            return null; // Retourner null si aucune correspondance trouvée ou en cas d'erreur
         }
     }
 }

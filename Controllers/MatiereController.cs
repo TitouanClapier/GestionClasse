@@ -1,41 +1,42 @@
 ﻿using GestionClasse.Repository;
 using GestionClasse.Views;
+using System;
 using System.Collections.Generic;
 
 namespace GestionClasse.Controllers
 {
     public class MatiereController
     {
-        private MatiereRepository matiereRepository;
+        private MatiereRepository _repository;
 
         public MatiereController()
         {
-            matiereRepository = new MatiereRepository();
+            _repository = new MatiereRepository();
         }
 
         public List<Matiere> GetAllMatieres()
         {
-            return matiereRepository.FindAll();
+            return _repository.FindAll();
         }
 
-        public Matiere GetMatiereById(int id)
+        public void CreateMatiere(string nom, int idProf)
         {
-            return matiereRepository.GetInfo(id);
+            _repository.Create(nom, idProf);
         }
 
-        public void AddMatiere(string nom)
+        public void DeleteMatiere(int idMatiere)
         {
-            matiereRepository.Create(nom);
+            _repository.Delete(idMatiere);
         }
 
-        public void UpdateMatiere(int id, string nom)
+        public void UpdateMatiere(int idMatiere, string nom, int idProf)
         {
-            matiereRepository.Update(id, nom);
+            _repository.Update(idMatiere, nom, idProf);
         }
 
-        public void DeleteMatiere(int id)
+        public Matiere GetMatiereInfo(int idMatiere)
         {
-            matiereRepository.Delete(id);
+            return _repository.GetInfo(idMatiere);
         }
     }
 }
