@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace GestionClasse.Views
+namespace GestionClasse.Models
 {
     public class Matiere
     {
-        public int IdMatiere { get; set; }
-        public string Nom { get; set; }
-        public int IdProf { get; set; }
+        private int _idMatiere;
+        private string _nom;
+        private int _idProf;
 
         public Matiere()
         {
@@ -15,39 +15,39 @@ namespace GestionClasse.Views
 
         public Matiere(int idMatiere, string nom, int idProf)
         {
-            IdMatiere = idMatiere;
-            Nom = nom;
-            IdProf = idProf;
+            _idMatiere = idMatiere;
+            _nom = nom;
+            _idProf = idProf;
         }
 
         public int GetIdMatiere()
         {
-            return IdMatiere;
+            return _idMatiere;
         }
 
         public void SetIdMatiere(int idMatiere)
         {
-            IdMatiere = idMatiere;
+            _idMatiere = idMatiere;
         }
 
         public string GetNom()
         {
-            return Nom;
+            return _nom;
         }
 
         public void SetNom(string nom)
         {
-            Nom = nom;
+            _nom = nom;
         }
 
         public int GetIdProf()
         {
-            return IdProf;
+            return _idProf;
         }
 
         public void SetIdProf(int idProf)
         {
-            IdProf = idProf;
+            _idProf = idProf;
         }
     }
 }

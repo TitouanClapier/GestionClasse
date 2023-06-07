@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System;
 
-namespace GestionClasse.Views
+namespace GestionClasse.Models
 {
     public class Note
     {

@@ -1,6 +1,6 @@
 ﻿namespace GestionClasse.Views
 {
-    partial class Menu
+    partial class FormMenu
     {
         /// <summary>
         /// Required designer variable.
