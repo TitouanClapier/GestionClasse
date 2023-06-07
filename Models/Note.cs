@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
 
 namespace GestionClasse.Views
 {
     public class Note
     {
         private int _idNote;
-        private double _valeur;
+        private int _valeur;
         private int _idEleve;
         private int _idMatiere;
 
-        public Note(int idNote, double valeur, int idEleve, int idMatiere)
+        public Note(int idNote, int valeur, int idEleve, int idMatiere)
         {
             _idNote = idNote;
             _valeur = valeur;
@@ -21,45 +22,28 @@ namespace GestionClasse.Views
             _idMatiere = idMatiere;
         }
 
-        public int GetIdNote()
+        public int IdNote
         {
-            return _idNote;
+            get { return _idNote; }
+            set { _idNote = value; }
         }
 
-        public void SetIdNote(int value)
+        public int Valeur
         {
-            _idNote = value;
+            get { return _valeur; }
+            set { _valeur = value; }
         }
 
-        public double GetValeur()
+        public int IdEleve
         {
-            return _valeur;
+            get { return _idEleve; }
+            set { _idEleve = value; }
         }
 
-        public void SetValeur(double value)
+        public int IdMatiere
         {
-            _valeur = value;
-        }
-
-        public int GetIdEleve()
-        {
-            return _idEleve;
-        }
-
-        public void SetIdEleve(int value)
-        {
-            _idEleve = value;
-        }
-
-        public int GetIdMatiere()
-        {
-            return _idMatiere;
-        }
-
-        public void SetIdMatiere(int value)
-        {
-            _idMatiere = value;
+            get { return _idMatiere; }
+            set { _idMatiere = value; }
         }
     }
-
 }
