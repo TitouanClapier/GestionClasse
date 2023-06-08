@@ -22,7 +22,7 @@ namespace GestionClasse.Repository
             {
                 connection.Open();
 
-                string selectSql = "SELECT * FROM Eleves";
+                string selectSql = "SELECT * FROM Eleves ORDER BY E_Nom, E_Prenom;";
                 using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
                 {
                     using (SQLiteDataReader reader = command.ExecuteReader())
@@ -55,7 +55,7 @@ namespace GestionClasse.Repository
             {
                 connection.Open();
 
-                string selectSql = "SELECT * FROM Eleve WHERE E_FK_C_ID = @ClasseId";
+                string selectSql = "SELECT * FROM Eleves WHERE E_FK_C_ID = @ClasseId ORDER BY E_Nom, E_Prenom;";
                 using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
                 {
                     command.Parameters.AddWithValue("@ClasseId", classeId);

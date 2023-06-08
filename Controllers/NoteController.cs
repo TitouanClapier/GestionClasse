@@ -15,9 +15,9 @@ public class NoteController
         return noRepository.FindAll();
     }
 
-    public void Create(int valeur, int idEleve, int idMatiere)
+    public void Create(int idEleve, int idMatiere, int valeur)
     {
-        noRepository.Create(valeur, idEleve, idMatiere);
+        noRepository.Create(idEleve, idMatiere, valeur);
     }
 
     public void Delete(int idNote)
@@ -25,9 +25,9 @@ public class NoteController
         noRepository.Delete(idNote);
     }
 
-    public void Update(int idNote, int valeur, int idEleve, int idMatiere)
+    public void Update(int idNote, int idEleve, int idMatiere, int valeur)
     {
-        noRepository.Update(idNote, valeur, idEleve, idMatiere);
+        noRepository.Update(idNote, idEleve, idMatiere, valeur);
     }
 
     public List<Note> Find(int id)

@@ -77,13 +77,12 @@ namespace GestionClasse.Repository
             return lesNotes;
         }
 
-
         public void Create(int valeur, int idEleve, int idMatiere)
         {
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string insertSql = "INSERT INTO Note (Valeur, IdEleve, IdMatiere) VALUES (@Valeur, @IdEleve, @IdMatiere)";
+                string insertSql = "INSERT INTO Notes (N_Valeur, N_FK_E_ID, N_FK_M_ID) VALUES (@Valeur, @IdEleve, @IdMatiere)";
 
                 connection.Open();
 
@@ -102,10 +101,10 @@ namespace GestionClasse.Repository
 
         public void Delete(int idNote)
         {
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string deleteSql = "DELETE FROM Note WHERE IdNote = @IdNote";
+                string deleteSql = "DELETE FROM Notes WHERE N_id = @IdNote";
 
                 connection.Open();
 
@@ -122,10 +121,10 @@ namespace GestionClasse.Repository
 
         public void Update(int idNote, int valeur, int idEleve, int idMatiere)
         {
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string updateSql = "UPDATE Note SET Valeur = @Valeur, IdEleve = @IdEleve, IdMatiere = @IdMatiere WHERE IdNote = @IdNote";
+                string updateSql = "UPDATE Notes SET N_Valeur = @Valeur, N_FK_E_ID = @IdEleve, N_FK_M_ID = @IdMatiere WHERE N_id = @IdNote";
 
                 connection.Open();
 
@@ -148,7 +147,7 @@ namespace GestionClasse.Repository
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string selectSql = "SELECT * FROM Note WHERE N_ID = @IdNote";
+                string selectSql = "SELECT * FROM Notes WHERE N_id = @IdNote";
 
                 connection.Open();
 

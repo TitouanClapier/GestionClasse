@@ -60,8 +60,8 @@ namespace GestionClasse.Views
         {
             List<Eleve> eleves = elController.GetElevesByClasse(classeId);
             CbEleve.DataSource = eleves;
-            CbEleve.DisplayMember = "Nom";
-            CbEleve.ValueMember = "Id";
+            CbEleve.DisplayMember = "E_Nom";
+            CbEleve.ValueMember = "E_ID";
         }
 
         private void CbEleve_SelectedIndexChanged(object sender, EventArgs e)

@@ -67,7 +67,7 @@
             TxtProf.ReadOnly = true;
             TxtProf.Size = new Size(125, 27);
             TxtProf.TabIndex = 1;
-            TxtProf.TextChanged += textBox2_TextChanged;
+
             // 
             // DgvEleve
             // 
