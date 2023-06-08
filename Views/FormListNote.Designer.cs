@@ -163,6 +163,7 @@
             CbEleve.Name = "CbEleve";
             CbEleve.Size = new Size(172, 28);
             CbEleve.TabIndex = 13;
+            CbEleve.Visible = false;
             // 
             // TxtValeur
             // 
@@ -215,6 +216,7 @@
             label8.Size = new Size(113, 20);
             label8.TabIndex = 19;
             label8.Text = "Choisir un éleve";
+            label8.Visible = false;
             // 
             // label9
             // 
@@ -247,6 +249,7 @@
             ColMatiere.MinimumWidth = 6;
             ColMatiere.Name = "ColMatiere";
             ColMatiere.ReadOnly = true;
+            ColMatiere.Width = 125;
             // 
             // ColValeur
             // 

@@ -80,6 +80,7 @@ namespace GestionClasse.Repository
 
             return eleves;
         }
+
         public void Create(string nom, string prenom, string sexe, int idClasse)
         {
             string connectionString = "Data Source=../../DBgestionclasse.db";
@@ -125,10 +126,10 @@ namespace GestionClasse.Repository
 
         public void Update(int id, string nom, string prenom, string sexe, int idClasse)
         {
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string updateSql = "UPDATE Eleve SET Nom = @Nom, Prenom = @Prenom, Sexe = @Sexe, IdClasse = @IdClasse WHERE IdEleve = @Id";
+                string updateSql = "UPDATE Eleves SET E_Nom = @Nom, E_Prenom = @Prenom, E_Sexe = @Sexe, E_FK_C_ID = @IdClasse WHERE E_ID = @Id";
 
                 connection.Open();
 

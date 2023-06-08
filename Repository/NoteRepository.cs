@@ -173,5 +173,37 @@ namespace GestionClasse.Repository
 
             return null;
         }
+
+        public Note GetNoteById(int idNote)
+        {
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                string selectSql = "SELECT * FROM Notes WHERE N_id = @IdNote";
+
+                connection.Open();
+
+                using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
+                {
+                    command.Parameters.AddWithValue("@IdNote", idNote);
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int valeur = Convert.ToInt32(reader["N_Valeur"]);
+                            int idEleve = Convert.ToInt32(reader["N_FK_E_ID"]);
+                            int idMatiere = Convert.ToInt32(reader["N_FK_M_ID"]);
+
+                            return new Note(idNote, valeur, idEleve, idMatiere);
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return null;
+        }
     }
 }

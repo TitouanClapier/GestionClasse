@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using GestionClasse.Controllers;
 using GestionClasse.Models;
 using GestionClasse.Repository;
@@ -45,24 +46,32 @@ namespace GestionClasse.Views
                 UpdateEleveInformation(eleve); // Mettre à jour les informations de l'élève
             }
 
-            List<Note> notes = noteRepository.Find(eleveId);
+            List<Note> notes = noController.Find(eleveId);
             LoadNotesDataGridView(notes);
         }
 
         private void LoadElevesComboBox()
         {
             List<Eleve> eleves = elController.GetAllEleves();
-            CbEleve.DataSource = eleves;
-            CbEleve.DisplayMember = "Nom";
-            CbEleve.ValueMember = "Id";
+            CbEleve.DisplayMember = "Text";
+            CbEleve.ValueMember = "Value";
+            int i = 0;
+            foreach (Eleve uneleve in eleves)
+            {
+                CbEleve.Items.Add(new { Text = uneleve.GetPrenom() + " " + uneleve.GetNom(), Value = uneleve.GetId() });
+            }
         }
 
         private void LoadMatiereComboBox()
         {
             List<Matiere> matieres = matController.GetAllMatieres();
-            CbMatiere.DataSource = matieres;
-            CbMatiere.DisplayMember = "Nom";
-            CbMatiere.ValueMember = "Id";
+            CbMatiere.DisplayMember = "Text";
+            CbMatiere.ValueMember = "Value";
+            int i = 0;
+            foreach (Matiere unematiere in matieres)
+            {
+                CbMatiere.Items.Add(new { Text = unematiere.GetNom(), Value = unematiere.GetId() });
+            }
         }
 
         private void UpdateEleveInformation(Eleve eleve)
@@ -87,14 +96,19 @@ namespace GestionClasse.Views
 
         private void CbEleve_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Eleve selectedEleve = (Eleve)CbEleve.SelectedItem;
-            if (selectedEleve != null)
-            {
-                eleveId = selectedEleve.GetId();
-                UpdateEleveInformation(selectedEleve);
+            int IDSelectedEleve = (CbEleve.SelectedItem as dynamic).Value;
 
-                List<Note> notes = noteRepository.Find(eleveId);
-                LoadNotesDataGridView(notes);
+            List<Eleve> LaListEleve = elController.GetAllEleves();
+            foreach (Eleve unEleve in LaListEleve)
+            {
+                if (unEleve.GetId() == IDSelectedEleve)
+                {
+                    eleveId = unEleve.GetId();
+                    UpdateEleveInformation(unEleve);
+
+                    List<Note> notes = noController.Find(eleveId);
+                    LoadNotesDataGridView(notes);
+                }
             }
         }
 
@@ -102,43 +116,62 @@ namespace GestionClasse.Views
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == DgvNote.Columns["ColBtnUpdate"].Index)
             {
-                // Code pour la mise à jour de la note
-                int noteId = (int)DgvNote.Rows[e.RowIndex].Cells["ColNoteId"].Value;
-                Matiere matiere = (Matiere)CbMatiere.SelectedItem;
-                int valeur = int.Parse(DgvNote.Rows[e.RowIndex].Cells["ColValeur"].Value.ToString());
+                int noteId = (int)DgvNote.Rows[e.RowIndex].Cells["ColId"].Value;
 
-                // Mettre à jour la note avec les nouvelles informations
-                noteRepository.Update(noteId, valeur, eleveId, matiere.GetId());
-
-                // Recharger les notes dans le DataGridView
-                List<Note> notes = noteRepository.Find(eleveId);
-                LoadNotesDataGridView(notes);
+                // Ouvrir la forme FormNoteUpdate en tant que boîte de dialogue modale
+                FormNoteUpdate formNoteUpdate = new FormNoteUpdate(noteId);
+                formNoteUpdate.FormClosed += FormNoteUpdate_FormClosed; // Écouter l'événement de fermeture de la fenêtre de mise à jour
+                formNoteUpdate.ShowDialog();
             }
             else if (e.RowIndex >= 0 && e.ColumnIndex == DgvNote.Columns["ColBtnDelete"].Index)
             {
-                // Code pour la suppression de la note
-                int noteId = (int)DgvNote.Rows[e.RowIndex].Cells["ColNoteId"].Value;
+                int noteId = (int)DgvNote.Rows[e.RowIndex].Cells["ColId"].Value;
 
                 // Supprimer la note de la base de données
-                noteRepository.Delete(noteId);
+                noController.Delete(noteId);
 
                 // Recharger les notes dans le DataGridView
-                List<Note> notes = noteRepository.Find(eleveId);
+                List<Note> notes = noController.Find(eleveId);
                 LoadNotesDataGridView(notes);
             }
         }
 
+        private void FormNoteUpdate_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Recharger les notes dans le DataGridView après la fermeture de la fenêtre de mise à jour
+            List<Note> notes = noController.Find(eleveId);
+            LoadNotesDataGridView(notes);
+        }
+
         private void BtnAddNote_Click(object sender, EventArgs e)
         {
-            Matiere matiere = (Matiere)CbMatiere.SelectedItem;
-            int valeur = int.Parse(TxtValeur.Text);
+            var matiere = (CbMatiere.SelectedItem as dynamic)?.Value;
+            if (matiere == 0 || matiere == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une matière.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            // Ajouter la nouvelle note à la base de données
-            noteRepository.Create(valeur, eleveId, matiere.GetId());
+            string valeurText = TxtValeur.Text;
+            int valeur;
+            if (int.TryParse(valeurText, out valeur))
+            {
+                if (valeur >= 0 && valeur <= 20)
+                {
+                    noController.Create(valeur, eleveId, matiere);
 
-            // Recharger les notes dans le DataGridView
-            List<Note> notes = noteRepository.Find(eleveId);
-            LoadNotesDataGridView(notes);
+                    List<Note> notes = noController.Find(eleveId);
+                    LoadNotesDataGridView(notes);
+                }
+                else
+                {
+                    MessageBox.Show("La valeur de la note doit être comprise entre 0 et 20.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("La valeur de la note doit être un nombre entier.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnRetour_Click(object sender, EventArgs e)

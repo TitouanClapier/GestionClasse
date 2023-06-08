@@ -43,5 +43,15 @@ namespace GestionClasse.Controllers
         {
             elRepository.Delete(id);
         }
+
+        public void UpdateClasse(int eleveId, int newClasseId)
+        {
+            Eleve eleve = elRepository.GetInfo(eleveId);
+            if (eleve != null)
+            {
+                eleve.SetIdClasse(newClasseId);
+                elRepository.Update(eleve.GetId(), eleve.GetNom(), eleve.GetPrenom(), eleve.GetSexe(), eleve.GetIdClasse());
+            }
+        }
     }
 }
