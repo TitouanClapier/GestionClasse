@@ -15,14 +15,14 @@ namespace GestionClasse.Repository
 
         public List<Professeur> FindAll()
         {
-            MessageBox.Show("test");
+            //MessageBox.Show("test");
             List<Professeur> lesProfesseurs = new List<Professeur>();
 
 
             // string connectionString = "Data Source= " + Application.StartupPath + "../../../DBgestionclasse.db";
             string connectionString = "Data Source=../../../DBgestionclasse.db";
 
-            MessageBox.Show(connectionString);
+            //MessageBox.Show(connectionString);
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();

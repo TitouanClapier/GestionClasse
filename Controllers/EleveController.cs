@@ -24,14 +24,19 @@ namespace GestionClasse.Controllers
             return elRepository.GetInfo(id);
         }
 
-        public void AddEleve(string nom, string prenom, string sexe)
+        public List<Eleve> GetElevesByClasse(int classeId)
         {
-            elRepository.Create(nom, prenom, sexe);
+            return elRepository.GetElevesByClasse(classeId);
         }
 
-        public void UpdateEleve(int id, string nom, string prenom, string sexe)
+        public void AddEleve(string nom, string prenom, string sexe, int idClasse)
         {
-            elRepository.Update(id, nom, prenom, sexe);
+            elRepository.Create(nom, prenom, sexe, idClasse);
+        }
+
+        public void UpdateEleve(int id, string nom, string prenom, string sexe, int idClasse)
+        {
+            elRepository.Update(id, nom, prenom, sexe, idClasse);
         }
 
         public void DeleteEleve(int id)

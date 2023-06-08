@@ -32,7 +32,7 @@ namespace GestionClasse.Views
             foreach (Classe classe in classes)
             {
                 Professeur professeurPrincipal = profRepository.Find(classe.GetIdProfPrincipale());
-                string nomPrenomProfesseurPrincipal = professeurPrincipal != null ? $"{professeurPrincipal.GetNom()} {professeurPrincipal.GetPrenom()}" : "";
+                string nomPrenomProfesseurPrincipal = professeurPrincipal != null ? $"{professeurPrincipal.GetPrenom()} {professeurPrincipal.GetNom()}" : "";
 
                 DgvClasse.Rows.Add(classe.GetIdClasse(), classe.GetLabel(), nomPrenomProfesseurPrincipal, "Voir");
             }

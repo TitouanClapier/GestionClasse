@@ -16,7 +16,7 @@ namespace GestionClasse.Controllers
 
         public List<Professeur> GetAllProfesseurs()
         {
-            MessageBox.Show("test Controller");
+            //MessageBox.Show("test Controller");
             return profRepository.FindAll();
         }
 

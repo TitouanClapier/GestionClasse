@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestionClasse.Models
 {
-
     public class Eleve
     {
         private int _idEleve;
         private string _nom;
         private string _prenom;
         private string _sexe;
+        private int _idClasse;
 
-        public Eleve(int idEleve, string nom, string prenom, string sexe)
+        public Eleve(int idEleve, string nom, string prenom, string sexe, int idClasse)
         {
             _idEleve = idEleve;
             _nom = nom;
             _prenom = prenom;
             _sexe = sexe;
+            _idClasse = idClasse;
         }
 
         public int GetId()
@@ -60,6 +57,16 @@ namespace GestionClasse.Models
         public void SetSexe(string value)
         {
             _sexe = value;
+        }
+
+        public int GetIdClasse()
+        {
+            return _idClasse;
+        }
+
+        public void SetIdClasse(int value)
+        {
+            _idClasse = value;
         }
     }
 }

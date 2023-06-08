@@ -22,7 +22,7 @@ namespace GestionClasse.Repository
             {
                 connection.Open();
                 //MessageBox.Show(connectionString);
-                string selectSql = "SELECT * FROM Classe";
+                string selectSql = "SELECT * FROM Classes";
                 using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
                 {
                     using (SQLiteDataReader reader = command.ExecuteReader())
@@ -51,7 +51,7 @@ namespace GestionClasse.Repository
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string insertSql = "INSERT INTO Classe (Label, IdProfPrincipale) VALUES (@Label, @IdProfPrincipale)";
+                string insertSql = "INSERT INTO Classes (Label, IdProfPrincipale) VALUES (@Label, @IdProfPrincipale)";
 
                 connection.Open();
 
@@ -72,7 +72,7 @@ namespace GestionClasse.Repository
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string deleteSql = "DELETE FROM Classe WHERE IdClasse = @Id";
+                string deleteSql = "DELETE FROM Classes WHERE IdClasse = @Id";
 
                 connection.Open();
 
@@ -92,7 +92,7 @@ namespace GestionClasse.Repository
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string updateSql = "UPDATE Classe SET Label = @Label, IdProfPrincipale = @IdProfPrincipale WHERE IdClasse = @Id";
+                string updateSql = "UPDATE Classes SET Label = @Label, IdProfPrincipale = @IdProfPrincipale WHERE IdClasse = @Id";
 
                 connection.Open();
 
@@ -114,7 +114,7 @@ namespace GestionClasse.Repository
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string selectSql = "SELECT * FROM Classe WHERE C_ID = @Id";
+                string selectSql = "SELECT * FROM Classes WHERE C_ID = @Id";
 
                 connection.Open();
 
@@ -126,8 +126,8 @@ namespace GestionClasse.Repository
                     {
                         if (reader.Read())
                         {
-                            string label = Convert.ToString(reader["Label"]);
-                            int idProfPrincipale = Convert.ToInt32(reader["IdProfPrincipale"]);
+                            string label = Convert.ToString(reader["C_Label"]);
+                            int idProfPrincipale = Convert.ToInt32(reader["C_FK_P_ID"]);
 
                             return new Classe(id, label, idProfPrincipale);
                         }

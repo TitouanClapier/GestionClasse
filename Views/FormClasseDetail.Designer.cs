@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             TxtLabel = new TextBox();
-            textBox2 = new TextBox();
-            dataGridView1 = new DataGridView();
+            TxtProf = new TextBox();
+            DgvEleve = new DataGridView();
             ColId = new DataGridViewTextBoxColumn();
             ColPrenom = new DataGridViewTextBoxColumn();
             ColNom = new DataGridViewTextBoxColumn();
@@ -47,34 +47,38 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            label7 = new Label();
+            ((System.ComponentModel.ISupportInitialize)DgvEleve).BeginInit();
             SuspendLayout();
             // 
             // TxtLabel
             // 
             TxtLabel.Location = new Point(443, 25);
             TxtLabel.Name = "TxtLabel";
+            TxtLabel.ReadOnly = true;
             TxtLabel.Size = new Size(125, 27);
             TxtLabel.TabIndex = 0;
             // 
-            // textBox2
+            // TxtProf
             // 
-            textBox2.Location = new Point(186, 25);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 1;
-            textBox2.TextChanged += textBox2_TextChanged;
+            TxtProf.Location = new Point(186, 25);
+            TxtProf.Name = "TxtProf";
+            TxtProf.ReadOnly = true;
+            TxtProf.Size = new Size(125, 27);
+            TxtProf.TabIndex = 1;
+            TxtProf.TextChanged += textBox2_TextChanged;
             // 
-            // dataGridView1
+            // DgvEleve
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ColId, ColPrenom, ColNom, ColSexe });
-            dataGridView1.Location = new Point(26, 75);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(545, 339);
-            dataGridView1.TabIndex = 2;
+            DgvEleve.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DgvEleve.Columns.AddRange(new DataGridViewColumn[] { ColId, ColPrenom, ColNom, ColSexe });
+            DgvEleve.Location = new Point(94, 72);
+            DgvEleve.Name = "DgvEleve";
+            DgvEleve.RowHeadersWidth = 51;
+            DgvEleve.RowTemplate.Height = 29;
+            DgvEleve.Size = new Size(545, 339);
+            DgvEleve.TabIndex = 2;
             // 
             // ColId
             // 
@@ -120,7 +124,7 @@
             // 
             // BtnAdd
             // 
-            BtnAdd.Location = new Point(836, 339);
+            BtnAdd.Location = new Point(948, 338);
             BtnAdd.Name = "BtnAdd";
             BtnAdd.Size = new Size(181, 29);
             BtnAdd.TabIndex = 4;
@@ -131,36 +135,40 @@
             // CbEleve
             // 
             CbEleve.FormattingEnabled = true;
-            CbEleve.Location = new Point(836, 99);
+            CbEleve.Location = new Point(948, 98);
             CbEleve.Name = "CbEleve";
             CbEleve.Size = new Size(181, 28);
             CbEleve.TabIndex = 5;
+            CbEleve.SelectedIndexChanged += CbEleve_SelectedIndexChanged;
             // 
             // TxtPrenom
             // 
-            TxtPrenom.Location = new Point(836, 147);
+            TxtPrenom.Location = new Point(948, 146);
             TxtPrenom.Name = "TxtPrenom";
+            TxtPrenom.ReadOnly = true;
             TxtPrenom.Size = new Size(181, 27);
             TxtPrenom.TabIndex = 6;
             // 
             // TxtNom
             // 
-            TxtNom.Location = new Point(836, 194);
+            TxtNom.Location = new Point(948, 193);
             TxtNom.Name = "TxtNom";
+            TxtNom.ReadOnly = true;
             TxtNom.Size = new Size(181, 27);
             TxtNom.TabIndex = 7;
             // 
             // TxtSexe
             // 
-            TxtSexe.Location = new Point(836, 251);
+            TxtSexe.Location = new Point(948, 250);
             TxtSexe.Name = "TxtSexe";
+            TxtSexe.ReadOnly = true;
             TxtSexe.Size = new Size(181, 27);
             TxtSexe.TabIndex = 8;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(753, 148);
+            label1.Location = new Point(865, 147);
             label1.Name = "label1";
             label1.Size = new Size(60, 20);
             label1.TabIndex = 9;
@@ -169,7 +177,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(751, 194);
+            label2.Location = new Point(863, 193);
             label2.Name = "label2";
             label2.Size = new Size(42, 20);
             label2.TabIndex = 10;
@@ -178,7 +186,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(753, 254);
+            label3.Location = new Point(865, 253);
             label3.Name = "label3";
             label3.Size = new Size(40, 20);
             label3.TabIndex = 11;
@@ -205,17 +213,28 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(753, 102);
+            label6.Location = new Point(865, 101);
             label6.Name = "label6";
             label6.Size = new Size(53, 20);
             label6.TabIndex = 14;
             label6.Text = "Choix :";
             // 
-            // FormClassDetail
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(607, 21);
+            label7.Name = "label7";
+            label7.Size = new Size(173, 28);
+            label7.TabIndex = 15;
+            label7.Text = "Details de la classe";
+            // 
+            // FormClasseDetail
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1186, 513);
+            Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -228,13 +247,13 @@
             Controls.Add(CbEleve);
             Controls.Add(BtnAdd);
             Controls.Add(BtnRetour);
-            Controls.Add(dataGridView1);
-            Controls.Add(textBox2);
+            Controls.Add(DgvEleve);
+            Controls.Add(TxtProf);
             Controls.Add(TxtLabel);
-            Name = "FormClassDetail";
+            Name = "FormClasseDetail";
             Text = "FormClassDetail";
             Load += FormClassDetail_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DgvEleve).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -242,8 +261,8 @@
         #endregion
 
         private TextBox TxtLabel;
-        private TextBox textBox2;
-        private DataGridView dataGridView1;
+        private TextBox TxtProf;
+        private DataGridView DgvEleve;
         private DataGridViewTextBoxColumn ColId;
         private DataGridViewTextBoxColumn ColPrenom;
         private DataGridViewTextBoxColumn ColNom;
@@ -260,5 +279,7 @@
         private Label label4;
         private Label label5;
         private Label label6;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Label label7;
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 
 namespace GestionClasse.Models
 {
@@ -22,28 +21,44 @@ namespace GestionClasse.Models
             _idMatiere = idMatiere;
         }
 
-        public int IdNote
+        public int GetId()
         {
-            get { return _idNote; }
-            set { _idNote = value; }
+            return _idNote;
         }
 
-        public int Valeur
+        public void SetIdNote(int value)
         {
-            get { return _valeur; }
-            set { _valeur = value; }
+            _idNote = value;
         }
 
-        public int IdEleve
+        public int GetValeur()
         {
-            get { return _idEleve; }
-            set { _idEleve = value; }
+            return _valeur;
         }
 
-        public int IdMatiere
+        public void SetValeur(int value)
         {
-            get { return _idMatiere; }
-            set { _idMatiere = value; }
+            _valeur = value;
+        }
+
+        public int GetIdEleve()
+        {
+            return _idEleve;
+        }
+
+        public void SetIdEleve(int value)
+        {
+            _idEleve = value;
+        }
+
+        public int GetIdMatiere()
+        {
+            return _idMatiere;
+        }
+
+        public void SetIdMatiere(int value)
+        {
+            _idMatiere = value;
         }
     }
 }
