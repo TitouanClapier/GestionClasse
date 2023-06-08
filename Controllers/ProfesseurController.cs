@@ -1,4 +1,5 @@
-﻿using GestionClasse.Repository;
+﻿using GestionClasse.Models;
+using GestionClasse.Repository;
 using GestionClasse.Views;
 using System.Collections.Generic;
 
@@ -6,36 +7,37 @@ namespace GestionClasse.Controllers
 {
     public class ProfesseurController
     {
-        private ProfesseurRepository professeurRepository;
+        private ProfesseurRepository profRepository;
 
         public ProfesseurController()
         {
-            professeurRepository = new ProfesseurRepository();
+            profRepository = new ProfesseurRepository();
         }
 
         public List<Professeur> GetAllProfesseurs()
         {
-            return professeurRepository.FindAll();
+            MessageBox.Show("test Controller");
+            return profRepository.FindAll();
         }
 
         public Professeur GetProfesseurById(int id)
         {
-            return professeurRepository.GetInfo(id);
+            return profRepository.GetInfo(id);
         }
 
         public void AddProfesseur(string nom, string prenom, string matiere)
         {
-            professeurRepository.Create(nom, prenom, matiere);
+            profRepository.Create(nom, prenom, matiere);
         }
 
         public void UpdateProfesseur(int id, string nom, string prenom, string matiere)
         {
-            professeurRepository.Update(id, nom, prenom, matiere);
+            profRepository.Update(id, nom, prenom, matiere);
         }
 
         public void DeleteProfesseur(int id)
         {
-            professeurRepository.Delete(id);
+            profRepository.Delete(id);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace GestionClasse.Views
 {
-    partial class FormListEleve
+    partial class FormListMatiere
     {
         /// <summary>
         /// Required designer variable.
@@ -28,28 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DgvEleve = new DataGridView();
+            DgvMatiere = new DataGridView();
             ColId = new DataGridViewTextBoxColumn();
-            ColPrenom = new DataGridViewTextBoxColumn();
             ColNom = new DataGridViewTextBoxColumn();
-            ColSexe = new DataGridViewTextBoxColumn();
-            ColBtnNote = new DataGridViewButtonColumn();
+            ColProf = new DataGridViewTextBoxColumn();
             BtnRetour = new Button();
             label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)DgvEleve).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DgvMatiere).BeginInit();
             SuspendLayout();
             // 
-            // DgvEleve
+            // DgvMatiere
             // 
-            DgvEleve.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DgvEleve.Columns.AddRange(new DataGridViewColumn[] { ColId, ColPrenom, ColNom, ColSexe, ColBtnNote });
-            DgvEleve.Location = new Point(232, 130);
-            DgvEleve.Name = "DgvEleve";
-            DgvEleve.RowHeadersWidth = 51;
-            DgvEleve.RowTemplate.Height = 29;
-            DgvEleve.Size = new Size(653, 188);
-            DgvEleve.TabIndex = 0;
-            DgvEleve.CellContentClick += DgvEleve_CellContentClick;
+            DgvMatiere.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DgvMatiere.Columns.AddRange(new DataGridViewColumn[] { ColId, ColNom, ColProf });
+            DgvMatiere.Location = new Point(299, 115);
+            DgvMatiere.Name = "DgvMatiere";
+            DgvMatiere.RowHeadersWidth = 51;
+            DgvMatiere.RowTemplate.Height = 29;
+            DgvMatiere.Size = new Size(430, 188);
+            DgvMatiere.TabIndex = 0;
             // 
             // ColId
             // 
@@ -57,15 +54,7 @@
             ColId.MinimumWidth = 6;
             ColId.Name = "ColId";
             ColId.ReadOnly = true;
-            ColId.Width = 75;
-            // 
-            // ColPrenom
-            // 
-            ColPrenom.HeaderText = "Prenom";
-            ColPrenom.MinimumWidth = 6;
-            ColPrenom.Name = "ColPrenom";
-            ColPrenom.ReadOnly = true;
-            ColPrenom.Width = 125;
+            ColId.Width = 125;
             // 
             // ColNom
             // 
@@ -75,28 +64,20 @@
             ColNom.ReadOnly = true;
             ColNom.Width = 125;
             // 
-            // ColSexe
+            // ColProf
             // 
-            ColSexe.HeaderText = "Sexe";
-            ColSexe.MinimumWidth = 6;
-            ColSexe.Name = "ColSexe";
-            ColSexe.ReadOnly = true;
-            ColSexe.Width = 125;
-            // 
-            // ColBtnNote
-            // 
-            ColBtnNote.HeaderText = "Notes";
-            ColBtnNote.MinimumWidth = 6;
-            ColBtnNote.Name = "ColBtnNote";
-            ColBtnNote.ReadOnly = true;
-            ColBtnNote.Width = 125;
+            ColProf.HeaderText = "Professeur";
+            ColProf.MinimumWidth = 6;
+            ColProf.Name = "ColProf";
+            ColProf.ReadOnly = true;
+            ColProf.Width = 125;
             // 
             // BtnRetour
             // 
-            BtnRetour.Location = new Point(510, 399);
+            BtnRetour.Location = new Point(464, 355);
             BtnRetour.Name = "BtnRetour";
             BtnRetour.Size = new Size(94, 29);
-            BtnRetour.TabIndex = 1;
+            BtnRetour.TabIndex = 2;
             BtnRetour.Text = "Retour";
             BtnRetour.UseVisualStyleBackColor = true;
             BtnRetour.Click += BtnRetour_Click;
@@ -105,36 +86,34 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(484, 49);
+            label1.Location = new Point(427, 37);
             label1.Name = "label1";
-            label1.Size = new Size(144, 28);
+            label1.Size = new Size(165, 28);
             label1.TabIndex = 3;
-            label1.Text = "Liste des éleves";
+            label1.Text = "Liste des matieres";
             // 
-            // FormListEleve
+            // FormListMatiere
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1193, 517);
+            ClientSize = new Size(1040, 450);
             Controls.Add(label1);
             Controls.Add(BtnRetour);
-            Controls.Add(DgvEleve);
-            Name = "FormListEleve";
-            Text = "FormListEleve";
-            Load += FormListEleve_Load;
-            ((System.ComponentModel.ISupportInitialize)DgvEleve).EndInit();
+            Controls.Add(DgvMatiere);
+            Name = "FormListMatiere";
+            Text = "FormMatiere";
+            ((System.ComponentModel.ISupportInitialize)DgvMatiere).EndInit();
+            Load += FormListMatiere_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView DgvEleve;
+        private DataGridView DgvMatiere;
         private DataGridViewTextBoxColumn ColId;
-        private DataGridViewTextBoxColumn ColPrenom;
         private DataGridViewTextBoxColumn ColNom;
-        private DataGridViewTextBoxColumn ColSexe;
-        private DataGridViewButtonColumn ColBtnNote;
+        private DataGridViewTextBoxColumn ColProf;
         private Button BtnRetour;
         private Label label1;
     }

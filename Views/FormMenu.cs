@@ -19,17 +19,26 @@ namespace GestionClasse.Views
 
         private void BtnClasse_Click(object sender, EventArgs e)
         {
-
+            FormListClasse ClasseList = new FormListClasse();
+            ClasseList.Show();
         }
 
         private void BtnEleve_Click(object sender, EventArgs e)
         {
-
+            FormListEleve EleveList = new FormListEleve();
+            EleveList.Show();
         }
 
         private void BtnProf_Click(object sender, EventArgs e)
         {
+            FormListProf ProfList = new FormListProf();
+            ProfList.Show();
+        }
 
+        private void BtnMatiere_Click(object sender, EventArgs e)
+        {
+            FormListMatiere MatiereList = new FormListMatiere();
+            MatiereList.Show();
         }
     }
 }

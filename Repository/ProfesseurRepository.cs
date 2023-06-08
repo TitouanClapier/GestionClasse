@@ -15,26 +15,31 @@ namespace GestionClasse.Repository
 
         public List<Professeur> FindAll()
         {
+            MessageBox.Show("test");
             List<Professeur> lesProfesseurs = new List<Professeur>();
 
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+
+            // string connectionString = "Data Source= " + Application.StartupPath + "../../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
+
+            MessageBox.Show(connectionString);
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
-                string selectSql = "SELECT * FROM Professeur";
+                string selectSql = "SELECT * FROM Professeurs;";
                 using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
                 {
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            int idProf = Convert.ToInt32(reader["IdProf"]);
-                            string nom = Convert.ToString(reader["Nom"]);
-                            string prenom = Convert.ToString(reader["Prenom"]);
-                            string sexe = Convert.ToString(reader["Sexe"]);
+                            int id = Convert.ToInt32(reader["P_Id"]);
+                            string nom = Convert.ToString(reader["P_Nom"]);
+                            string prenom = Convert.ToString(reader["P_Prenom"]);
+                            string sexe = Convert.ToString(reader["P_Sexe"]);
 
-                            lesProfesseurs.Add(new Professeur(idProf, nom, prenom, sexe));
+                            lesProfesseurs.Add(new Professeur(id, nom, prenom, sexe));
                         }
                     }
                 }
@@ -45,12 +50,45 @@ namespace GestionClasse.Repository
             return lesProfesseurs;
         }
 
-        public void Create(string nom, string prenom, string sexe)
+        public Professeur Find(int id)
         {
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+            Professeur professeur = null;
+
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string insertSql = "INSERT INTO Professeur (Nom, Prenom, Sexe) VALUES (@Nom, @Prenom, @Sexe)";
+                connection.Open();
+
+                string selectSql = "SELECT * FROM Professeurs WHERE P_Id = @Id;";
+                using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string nom = Convert.ToString(reader["P_Nom"]);
+                            string prenom = Convert.ToString(reader["P_Prenom"]);
+                            string sexe = Convert.ToString(reader["P_Sexe"]);
+
+                            professeur = new Professeur(id, nom, prenom, sexe);
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return professeur;
+        }
+
+        public void Create(string nom, string prenom, string sexe)
+        {
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                string insertSql = "INSERT INTO Professeurs (Nom, Prenom, Sexe) VALUES (@Nom, @Prenom, @Sexe)";
 
                 connection.Open();
 
@@ -69,10 +107,10 @@ namespace GestionClasse.Repository
 
         public void Delete(int id)
         {
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string deleteSql = "DELETE FROM Professeur WHERE IdProf = @Id";
+                string deleteSql = "DELETE FROM Professeurs WHERE IdProf = @Id";
 
                 connection.Open();
 
@@ -89,10 +127,10 @@ namespace GestionClasse.Repository
 
         public void Update(int id, string nom, string prenom, string sexe)
         {
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string updateSql = "UPDATE Professeur SET Nom = @Nom, Prenom = @Prenom, Sexe = @Sexe WHERE IdProf = @Id";
+                string updateSql = "UPDATE Professeurs SET Nom = @Nom, Prenom = @Prenom, Sexe = @Sexe WHERE IdProf = @Id;";
 
                 connection.Open();
 
@@ -112,10 +150,11 @@ namespace GestionClasse.Repository
 
         public Professeur GetInfo(int id)
         {
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+            //MessageBox.Show(Convert.ToString(id));
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string selectSql = "SELECT * FROM Professeur WHERE IdProf = @Id";
+                string selectSql = "SELECT * FROM Professeurs WHERE P_ID = @Id;";
 
                 connection.Open();
 
@@ -127,9 +166,9 @@ namespace GestionClasse.Repository
                     {
                         if (reader.Read())
                         {
-                            string nom = Convert.ToString(reader["Nom"]);
-                            string prenom = Convert.ToString(reader["Prenom"]);
-                            string sexe = Convert.ToString(reader["Sexe"]);
+                            string nom = Convert.ToString(reader["P_Nom"]);
+                            string prenom = Convert.ToString(reader["P_Prenom"]);
+                            string sexe = Convert.ToString(reader["P_Sexe"]);
 
                             return new Professeur(id, nom, prenom, sexe);
                         }

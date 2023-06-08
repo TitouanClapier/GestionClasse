@@ -1,4 +1,5 @@
-﻿using GestionClasse.Views;
+﻿using GestionClasse.Models;
+using GestionClasse.Views;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;

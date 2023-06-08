@@ -20,7 +20,7 @@ namespace GestionClasse.Models
             _idProf = idProf;
         }
 
-        public int GetIdMatiere()
+        public int GetId()
         {
             return _idMatiere;
         }

@@ -32,11 +32,12 @@
             BtnEleve = new Button();
             BtnProf = new Button();
             label1 = new Label();
+            BtnMatiere = new Button();
             SuspendLayout();
             // 
             // BtnClasse
             // 
-            BtnClasse.Location = new Point(524, 154);
+            BtnClasse.Location = new Point(180, 75);
             BtnClasse.Name = "BtnClasse";
             BtnClasse.Size = new Size(180, 55);
             BtnClasse.TabIndex = 0;
@@ -46,7 +47,7 @@
             // 
             // BtnEleve
             // 
-            BtnEleve.Location = new Point(524, 248);
+            BtnEleve.Location = new Point(761, 75);
             BtnEleve.Name = "BtnEleve";
             BtnEleve.Size = new Size(180, 55);
             BtnEleve.TabIndex = 1;
@@ -56,7 +57,7 @@
             // 
             // BtnProf
             // 
-            BtnProf.Location = new Point(524, 342);
+            BtnProf.Location = new Point(761, 174);
             BtnProf.Name = "BtnProf";
             BtnProf.Size = new Size(180, 57);
             BtnProf.TabIndex = 2;
@@ -74,11 +75,22 @@
             label1.TabIndex = 3;
             label1.Text = "GestionClasse";
             // 
+            // BtnMatiere
+            // 
+            BtnMatiere.Location = new Point(180, 176);
+            BtnMatiere.Name = "BtnMatiere";
+            BtnMatiere.Size = new Size(180, 55);
+            BtnMatiere.TabIndex = 4;
+            BtnMatiere.Text = "Gestion des matieres";
+            BtnMatiere.UseVisualStyleBackColor = true;
+            BtnMatiere.Click += BtnMatiere_Click;
+            // 
             // FormMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1200, 520);
+            Controls.Add(BtnMatiere);
             Controls.Add(label1);
             Controls.Add(BtnProf);
             Controls.Add(BtnEleve);
@@ -95,5 +107,6 @@
         private Button BtnEleve;
         private Button BtnProf;
         private Label label1;
+        private Button BtnMatiere;
     }
 }

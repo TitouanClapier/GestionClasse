@@ -1,4 +1,5 @@
-﻿using GestionClasse.Views;
+﻿using GestionClasse.Models;
+using GestionClasse.Views;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -16,21 +17,21 @@ namespace GestionClasse.Repository
         {
             List<Matiere> matieres = new List<Matiere>();
 
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
-                string selectSql = "SELECT * FROM Matiere";
+                string selectSql = "SELECT * FROM Matieres";
                 using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
                 {
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            int idMatiere = Convert.ToInt32(reader["IdMatiere"]);
-                            string nom = Convert.ToString(reader["Nom"]);
-                            int idProf = Convert.ToInt32(reader["IdProf"]);
+                            int idMatiere = Convert.ToInt32(reader["M_Id"]);
+                            string nom = Convert.ToString(reader["M_Nom"]);
+                            int idProf = Convert.ToInt32(reader["M_FK_P_ID"]);
 
                             matieres.Add(new Matiere(idMatiere, nom, idProf));
                         }
@@ -42,6 +43,40 @@ namespace GestionClasse.Repository
 
             return matieres;
         }
+
+        public Matiere Find(int id)
+        {
+            Matiere matiere = null;
+
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string selectSql = "SELECT * FROM Matieres WHERE M_FK_P_ID = @id";
+                using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int idMatiere = Convert.ToInt32(reader["M_Id"]);
+                            string nom = Convert.ToString(reader["M_Nom"]);
+                            int idProf = Convert.ToInt32(reader["M_FK_P_ID"]);
+
+                            matiere = new Matiere(idMatiere, nom, idProf);
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return matiere;
+        }
+
 
         public void Create(string nom, int idProf)
         {

@@ -13,7 +13,7 @@ namespace AutoFact2.Models
 
         public DbConnect()
         {
-            sqliteConnection = new SQLiteConnection("Data Source=../../DBgestionclasse.db");
+            sqliteConnection = new SQLiteConnection("Data Source=./DBgestionclasse.db");
         }
 
         public void OpenConnection()

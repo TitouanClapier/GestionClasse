@@ -21,7 +21,7 @@ namespace GestionClasse.Models
             _sexe = sexe;
         }
 
-        public int GetIdProf()
+        public int GetId()
         {
             return _idProf;
         }

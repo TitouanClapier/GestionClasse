@@ -1,4 +1,5 @@
-﻿using GestionClasse.Views;
+﻿using GestionClasse.Models;
+using GestionClasse.Views;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -16,22 +17,22 @@ namespace GestionClasse.Repository
         {
             List<Eleve> lesEleves = new List<Eleve>();
 
-            string connectionString = "Data Source=../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
-                string selectSql = "SELECT * FROM Eleve";
+                string selectSql = "SELECT * FROM Eleves";
                 using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
                 {
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            int id = Convert.ToInt32(reader["IdEleve"]);
-                            string nom = Convert.ToString(reader["Nom"]);
-                            string prenom = Convert.ToString(reader["Prenom"]);
-                            string sexe = Convert.ToString(reader["Sexe"]);
+                            int id = Convert.ToInt32(reader["E_Id"]);
+                            string nom = Convert.ToString(reader["E_Nom"]);
+                            string prenom = Convert.ToString(reader["E_Prenom"]);
+                            string sexe = Convert.ToString(reader["E_Sexe"]);
 
                             lesEleves.Add(new Eleve(id, nom, prenom, sexe));
                         }

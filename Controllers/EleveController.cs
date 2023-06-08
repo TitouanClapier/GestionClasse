@@ -1,4 +1,5 @@
-﻿using GestionClasse.Repository;
+﻿using GestionClasse.Models;
+using GestionClasse.Repository;
 using GestionClasse.Views;
 using System.Collections.Generic;
 
@@ -6,36 +7,36 @@ namespace GestionClasse.Controllers
 {
     public class EleveController
     {
-        private EleveRepository eleveRepository;
+        private EleveRepository elRepository;
 
         public EleveController()
         {
-            eleveRepository = new EleveRepository();
+            elRepository = new EleveRepository();
         }
 
         public List<Eleve> GetAllEleves()
         {
-            return eleveRepository.FindAll();
+            return elRepository.FindAll();
         }
 
         public Eleve GetEleveById(int id)
         {
-            return eleveRepository.GetInfo(id);
+            return elRepository.GetInfo(id);
         }
 
         public void AddEleve(string nom, string prenom, string sexe)
         {
-            eleveRepository.Create(nom, prenom, sexe);
+            elRepository.Create(nom, prenom, sexe);
         }
 
         public void UpdateEleve(int id, string nom, string prenom, string sexe)
         {
-            eleveRepository.Update(id, nom, prenom, sexe);
+            elRepository.Update(id, nom, prenom, sexe);
         }
 
         public void DeleteEleve(int id)
         {
-            eleveRepository.Delete(id);
+            elRepository.Delete(id);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace GestionClasse.Views
 {
     public partial class FormClasseDetail : Form
     {
-        public FormClasseDetail()
+        public FormClasseDetail(int id)
         {
             InitializeComponent();
         }

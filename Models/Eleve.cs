@@ -22,7 +22,7 @@ namespace GestionClasse.Models
             _sexe = sexe;
         }
 
-        public int GetIdEleve()
+        public int GetId()
         {
             return _idEleve;
         }

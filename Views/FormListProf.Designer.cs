@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            DgvProf = new DataGridView();
             ColId = new DataGridViewTextBoxColumn();
             ColPrenom = new DataGridViewTextBoxColumn();
             ColNom = new DataGridViewTextBoxColumn();
             ColSexe = new DataGridViewTextBoxColumn();
-            BtnRetour = new Button();
             ColMatiere = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            BtnRetour = new Button();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)DgvProf).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // DgvProf
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ColId, ColPrenom, ColNom, ColSexe, ColMatiere });
-            dataGridView1.Location = new Point(228, 140);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(658, 188);
-            dataGridView1.TabIndex = 0;
+            DgvProf.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DgvProf.Columns.AddRange(new DataGridViewColumn[] { ColId, ColPrenom, ColNom, ColSexe, ColMatiere });
+            DgvProf.Location = new Point(228, 140);
+            DgvProf.Name = "DgvProf";
+            DgvProf.RowHeadersWidth = 51;
+            DgvProf.RowTemplate.Height = 29;
+            DgvProf.Size = new Size(658, 188);
+            DgvProf.TabIndex = 0;
             // 
             // ColId
             // 
@@ -80,6 +81,14 @@
             ColSexe.ReadOnly = true;
             ColSexe.Width = 125;
             // 
+            // ColMatiere
+            // 
+            ColMatiere.HeaderText = "Matiere";
+            ColMatiere.MinimumWidth = 6;
+            ColMatiere.Name = "ColMatiere";
+            ColMatiere.ReadOnly = true;
+            ColMatiere.Width = 125;
+            // 
             // BtnRetour
             // 
             BtnRetour.Location = new Point(499, 395);
@@ -90,35 +99,41 @@
             BtnRetour.UseVisualStyleBackColor = true;
             BtnRetour.Click += BtnRetour_Click;
             // 
-            // ColMatiere
+            // label1
             // 
-            ColMatiere.HeaderText = "Matiere";
-            ColMatiere.MinimumWidth = 6;
-            ColMatiere.Name = "ColMatiere";
-            ColMatiere.ReadOnly = true;
-            ColMatiere.Width = 125;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(453, 53);
+            label1.Name = "label1";
+            label1.Size = new Size(190, 28);
+            label1.TabIndex = 2;
+            label1.Text = "Liste des professeurs";
             // 
             // FormListProf
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1180, 510);
+            Controls.Add(label1);
             Controls.Add(BtnRetour);
-            Controls.Add(dataGridView1);
+            Controls.Add(DgvProf);
             Name = "FormListProf";
             Text = "FormListProf";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += FormListProf_Load;
+            ((System.ComponentModel.ISupportInitialize)DgvProf).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView DgvProf;
         private DataGridViewTextBoxColumn ColId;
         private DataGridViewTextBoxColumn ColPrenom;
         private DataGridViewTextBoxColumn ColNom;
         private DataGridViewTextBoxColumn ColSexe;
         private DataGridViewTextBoxColumn ColMatiere;
         private Button BtnRetour;
+        private Label label1;
     }
 }
