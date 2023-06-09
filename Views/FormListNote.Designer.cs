@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             DgvNote = new DataGridView();
+            ColId = new DataGridViewTextBoxColumn();
+            ColMatiere = new DataGridViewTextBoxColumn();
+            ColValeur = new DataGridViewTextBoxColumn();
+            ColBtnUpdate = new DataGridViewButtonColumn();
+            ColBtnDelete = new DataGridViewButtonColumn();
             label1 = new Label();
             BtnRetour = new Button();
             TxtNom = new TextBox();
@@ -48,31 +53,66 @@
             label8 = new Label();
             label9 = new Label();
             sqliteCommand1 = new Microsoft.Data.Sqlite.SqliteCommand();
-            ColId = new DataGridViewTextBoxColumn();
-            ColMatiere = new DataGridViewTextBoxColumn();
-            ColValeur = new DataGridViewTextBoxColumn();
-            ColBtnUpdate = new DataGridViewButtonColumn();
-            ColBtnDelete = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)DgvNote).BeginInit();
             SuspendLayout();
             // 
             // DgvNote
             // 
+            DgvNote.AllowUserToAddRows = false;
+            DgvNote.AllowUserToDeleteRows = false;
             DgvNote.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DgvNote.Columns.AddRange(new DataGridViewColumn[] { ColId, ColMatiere, ColValeur, ColBtnUpdate, ColBtnDelete });
             DgvNote.Location = new Point(351, 96);
             DgvNote.Name = "DgvNote";
             DgvNote.RowHeadersWidth = 51;
             DgvNote.RowTemplate.Height = 29;
-            DgvNote.Size = new Size(499, 241);
+            DgvNote.Size = new Size(554, 241);
             DgvNote.TabIndex = 0;
             DgvNote.CellContentClick += DgvNote_CellContentClick;
+            // 
+            // ColId
+            // 
+            ColId.HeaderText = "Id";
+            ColId.MinimumWidth = 6;
+            ColId.Name = "ColId";
+            ColId.ReadOnly = true;
+            ColId.Width = 50;
+            // 
+            // ColMatiere
+            // 
+            ColMatiere.HeaderText = "Matiere";
+            ColMatiere.MinimumWidth = 6;
+            ColMatiere.Name = "ColMatiere";
+            ColMatiere.ReadOnly = true;
+            ColMatiere.Width = 125;
+            // 
+            // ColValeur
+            // 
+            ColValeur.HeaderText = "Valeur";
+            ColValeur.MinimumWidth = 6;
+            ColValeur.Name = "ColValeur";
+            ColValeur.ReadOnly = true;
+            ColValeur.Width = 75;
+            // 
+            // ColBtnUpdate
+            // 
+            ColBtnUpdate.HeaderText = "Modifier";
+            ColBtnUpdate.MinimumWidth = 6;
+            ColBtnUpdate.Name = "ColBtnUpdate";
+            ColBtnUpdate.Width = 125;
+            // 
+            // ColBtnDelete
+            // 
+            ColBtnDelete.HeaderText = "Supprimer";
+            ColBtnDelete.MinimumWidth = 6;
+            ColBtnDelete.Name = "ColBtnDelete";
+            ColBtnDelete.Width = 125;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(508, 46);
+            label1.Location = new Point(565, 45);
             label1.Name = "label1";
             label1.Size = new Size(139, 28);
             label1.TabIndex = 3;
@@ -80,7 +120,7 @@
             // 
             // BtnRetour
             // 
-            BtnRetour.Location = new Point(553, 376);
+            BtnRetour.Location = new Point(585, 366);
             BtnRetour.Name = "BtnRetour";
             BtnRetour.Size = new Size(94, 29);
             BtnRetour.TabIndex = 4;
@@ -167,7 +207,7 @@
             // 
             // TxtValeur
             // 
-            TxtValeur.Location = new Point(1017, 178);
+            TxtValeur.Location = new Point(1086, 177);
             TxtValeur.Name = "TxtValeur";
             TxtValeur.Size = new Size(151, 27);
             TxtValeur.TabIndex = 14;
@@ -175,14 +215,14 @@
             // CbMatiere
             // 
             CbMatiere.FormattingEnabled = true;
-            CbMatiere.Location = new Point(1017, 130);
+            CbMatiere.Location = new Point(1086, 129);
             CbMatiere.Name = "CbMatiere";
             CbMatiere.Size = new Size(151, 28);
             CbMatiere.TabIndex = 15;
             // 
             // BtnAddNote
             // 
-            BtnAddNote.Location = new Point(1017, 237);
+            BtnAddNote.Location = new Point(1086, 236);
             BtnAddNote.Name = "BtnAddNote";
             BtnAddNote.Size = new Size(151, 29);
             BtnAddNote.TabIndex = 16;
@@ -193,7 +233,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(856, 133);
+            label6.Location = new Point(943, 132);
             label6.Name = "label6";
             label6.Size = new Size(137, 20);
             label6.TabIndex = 17;
@@ -202,7 +242,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(951, 181);
+            label7.Location = new Point(1020, 180);
             label7.Name = "label7";
             label7.Size = new Size(42, 20);
             label7.TabIndex = 18;
@@ -222,7 +262,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(951, 46);
+            label9.Location = new Point(1020, 45);
             label9.Name = "label9";
             label9.Size = new Size(140, 28);
             label9.TabIndex = 20;
@@ -235,47 +275,11 @@
             sqliteCommand1.Transaction = null;
             sqliteCommand1.UpdatedRowSource = System.Data.UpdateRowSource.None;
             // 
-            // ColId
-            // 
-            ColId.HeaderText = "Id";
-            ColId.MinimumWidth = 6;
-            ColId.Name = "ColId";
-            ColId.ReadOnly = true;
-            ColId.Width = 50;
-            // 
-            // ColMatiere
-            // 
-            ColMatiere.HeaderText = "Matiere";
-            ColMatiere.MinimumWidth = 6;
-            ColMatiere.Name = "ColMatiere";
-            ColMatiere.ReadOnly = true;
-            ColMatiere.Width = 125;
-            // 
-            // ColValeur
-            // 
-            ColValeur.HeaderText = "Valeur";
-            ColValeur.MinimumWidth = 6;
-            ColValeur.Name = "ColValeur";
-            ColValeur.ReadOnly = true;
-            ColValeur.Width = 75;
-            // 
-            // ColBtnUpdate
-            // 
-            ColBtnUpdate.HeaderText = "Modifier";
-            ColBtnUpdate.MinimumWidth = 6;
-            ColBtnUpdate.Name = "ColBtnUpdate";
-            // 
-            // ColBtnDelete
-            // 
-            ColBtnDelete.HeaderText = "Supprimer";
-            ColBtnDelete.MinimumWidth = 6;
-            ColBtnDelete.Name = "ColBtnDelete";
-            // 
             // FormListNote
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1189, 513);
+            ClientSize = new Size(1260, 513);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);

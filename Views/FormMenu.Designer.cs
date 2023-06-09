@@ -37,7 +37,7 @@
             // 
             // BtnClasse
             // 
-            BtnClasse.Location = new Point(180, 75);
+            BtnClasse.Location = new Point(231, 119);
             BtnClasse.Name = "BtnClasse";
             BtnClasse.Size = new Size(180, 55);
             BtnClasse.TabIndex = 0;
@@ -47,7 +47,7 @@
             // 
             // BtnEleve
             // 
-            BtnEleve.Location = new Point(761, 75);
+            BtnEleve.Location = new Point(812, 119);
             BtnEleve.Name = "BtnEleve";
             BtnEleve.Size = new Size(180, 55);
             BtnEleve.TabIndex = 1;
@@ -57,7 +57,7 @@
             // 
             // BtnProf
             // 
-            BtnProf.Location = new Point(761, 174);
+            BtnProf.Location = new Point(812, 218);
             BtnProf.Name = "BtnProf";
             BtnProf.Size = new Size(180, 57);
             BtnProf.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(497, 36);
+            label1.Location = new Point(559, 83);
             label1.Name = "label1";
             label1.Size = new Size(100, 20);
             label1.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             // BtnMatiere
             // 
-            BtnMatiere.Location = new Point(180, 176);
+            BtnMatiere.Location = new Point(231, 220);
             BtnMatiere.Name = "BtnMatiere";
             BtnMatiere.Size = new Size(180, 55);
             BtnMatiere.TabIndex = 4;

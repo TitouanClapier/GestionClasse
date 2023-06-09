@@ -29,17 +29,19 @@
         private void InitializeComponent()
         {
             DgvClasse = new DataGridView();
-            BtnRetour = new Button();
-            label1 = new Label();
             ColId = new DataGridViewTextBoxColumn();
             BtnLabel = new DataGridViewTextBoxColumn();
             ColProf = new DataGridViewTextBoxColumn();
             ColBtnEleve = new DataGridViewButtonColumn();
+            BtnRetour = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)DgvClasse).BeginInit();
             SuspendLayout();
             // 
             // DgvClasse
             // 
+            DgvClasse.AllowUserToAddRows = false;
+            DgvClasse.AllowUserToDeleteRows = false;
             DgvClasse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DgvClasse.Columns.AddRange(new DataGridViewColumn[] { ColId, BtnLabel, ColProf, ColBtnEleve });
             DgvClasse.Location = new Point(287, 101);
@@ -49,26 +51,6 @@
             DgvClasse.Size = new Size(599, 257);
             DgvClasse.TabIndex = 0;
             DgvClasse.CellContentClick += DgvClasse_CellContentClick;
-            // 
-            // BtnRetour
-            // 
-            BtnRetour.Location = new Point(544, 438);
-            BtnRetour.Name = "BtnRetour";
-            BtnRetour.Size = new Size(94, 29);
-            BtnRetour.TabIndex = 1;
-            BtnRetour.Text = "Retour";
-            BtnRetour.UseVisualStyleBackColor = true;
-            BtnRetour.Click += BtnRetour_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(489, 38);
-            label1.Name = "label1";
-            label1.Size = new Size(149, 28);
-            label1.TabIndex = 3;
-            label1.Text = "Liste des classes";
             // 
             // ColId
             // 
@@ -101,6 +83,26 @@
             ColBtnEleve.Name = "ColBtnEleve";
             ColBtnEleve.Width = 125;
             // 
+            // BtnRetour
+            // 
+            BtnRetour.Location = new Point(544, 438);
+            BtnRetour.Name = "BtnRetour";
+            BtnRetour.Size = new Size(94, 29);
+            BtnRetour.TabIndex = 1;
+            BtnRetour.Text = "Retour";
+            BtnRetour.UseVisualStyleBackColor = true;
+            BtnRetour.Click += BtnRetour_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(489, 38);
+            label1.Name = "label1";
+            label1.Size = new Size(149, 28);
+            label1.TabIndex = 3;
+            label1.Text = "Liste des classes";
+            // 
             // FormListClasse
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -111,8 +113,8 @@
             Controls.Add(DgvClasse);
             Name = "FormListClasse";
             Text = "FormListClasse";
-            ((System.ComponentModel.ISupportInitialize)DgvClasse).EndInit();
             Load += FormListClasse_Load;
+            ((System.ComponentModel.ISupportInitialize)DgvClasse).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

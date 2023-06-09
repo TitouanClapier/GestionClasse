@@ -71,6 +71,8 @@
             // 
             // DgvEleve
             // 
+            DgvEleve.AllowUserToAddRows = false;
+            DgvEleve.AllowUserToDeleteRows = false;
             DgvEleve.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DgvEleve.Columns.AddRange(new DataGridViewColumn[] { ColId, ColPrenom, ColNom, ColSexe });
             DgvEleve.Location = new Point(89, 146);

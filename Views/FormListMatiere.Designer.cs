@@ -39,6 +39,8 @@
             // 
             // DgvMatiere
             // 
+            DgvMatiere.AllowUserToAddRows = false;
+            DgvMatiere.AllowUserToDeleteRows = false;
             DgvMatiere.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DgvMatiere.Columns.AddRange(new DataGridViewColumn[] { ColId, ColNom, ColProf });
             DgvMatiere.Location = new Point(299, 115);
@@ -102,8 +104,8 @@
             Controls.Add(DgvMatiere);
             Name = "FormListMatiere";
             Text = "FormMatiere";
-            ((System.ComponentModel.ISupportInitialize)DgvMatiere).EndInit();
             Load += FormListMatiere_Load;
+            ((System.ComponentModel.ISupportInitialize)DgvMatiere).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
