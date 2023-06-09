@@ -148,6 +148,7 @@ namespace GestionClasse.Repository
             }
         }
 
+        
         public ClsProfesseur GetInfo(int id)
         {
             //MessageBox.Show(Convert.ToString(id));
@@ -179,6 +180,6 @@ namespace GestionClasse.Repository
             }
 
             return null;
-        }
+        } 
     }
 }

@@ -8,41 +8,41 @@ namespace GestionClasse.Controllers
 {
     public class CtrlMatiere
     {
-        private RepoMatiere matrepository;
+        private RepoMatiere RepositoryMatiere;
 
         public CtrlMatiere()
         {
-            matrepository = new RepoMatiere();
+            RepositoryMatiere = new RepoMatiere();
         }
 
         public List<ClsMatiere> GetAllMatieres()
         {
-            return matrepository.FindAll();
+            return RepositoryMatiere.FindAll();
         }
 
         public ClsMatiere GetMatiere(int id)
         {
-            return matrepository.Find(id);
+            return RepositoryMatiere.Find(id);
         }
 
         public void CreateMatiere(string nom, int idProf)
         {
-            matrepository.Create(nom, idProf);
+            RepositoryMatiere.Create(nom, idProf);
         }
 
         public void DeleteMatiere(int idMatiere)
         {
-            matrepository.Delete(idMatiere);
+            RepositoryMatiere.Delete(idMatiere);
         }
 
         public void UpdateMatiere(int idMatiere, string nom, int idProf)
         {
-            matrepository.Update(idMatiere, nom, idProf);
+            RepositoryMatiere.Update(idMatiere, nom, idProf);
         }
 
         public ClsMatiere GetMatiereInfo(int idMatiere)
         {
-            return matrepository.GetInfo(idMatiere);
+            return RepositoryMatiere.GetInfo(idMatiere);
         }
     }
 }

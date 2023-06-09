@@ -16,21 +16,21 @@ namespace GestionClasse.Views
 {
     public partial class FormListNote : Form
     {
-        private CtrlEleve elController;
-        private CtrlNote noController;
-        private CtrlClasse claController;
-        private CtrlMatiere matController;
-        private RepoNote noteRepository;
+        private CtrlEleve ControllerEleve;
+        private CtrlNote ControllerNote;
+        private CtrlClasse ControllerClasse;
+        private CtrlMatiere ControllerMatiere;
+        //private CtrlNote ControllerNote;
         private int eleveId;
 
         public FormListNote(int id)
         {
             InitializeComponent();
-            elController = new CtrlEleve();
-            noController = new CtrlNote();
-            claController = new CtrlClasse();
-            matController = new CtrlMatiere();
-            noteRepository = new RepoNote();
+            ControllerEleve = new CtrlEleve();
+            ControllerNote = new CtrlNote();
+            ControllerClasse = new CtrlClasse();
+            ControllerMatiere = new CtrlMatiere();
+            //ControllerNote = new CtrlNote();
             eleveId = id;
         }
 
@@ -39,20 +39,20 @@ namespace GestionClasse.Views
             LoadElevesComboBox(); // Charger la ComboBox des élèves
             LoadMatiereComboBox(); // Charger la ComboBox des matières
 
-            ClsEleve eleve = elController.GetEleveById(eleveId);
+            ClsEleve eleve = ControllerEleve.GetEleveById(eleveId);
             if (eleve != null)
             {
                 CbEleve.SelectedItem = eleve; // Sélectionner l'élève dans la ComboBox
                 UpdateEleveInformation(eleve); // Mettre à jour les informations de l'élève
             }
 
-            List<ClsNote> notes = noController.Find(eleveId);
+            List<ClsNote> notes = ControllerNote.Find(eleveId);
             LoadNotesDataGridView(notes);
         }
 
         private void LoadElevesComboBox()
         {
-            List<ClsEleve> eleves = elController.GetAllEleves();
+            List<ClsEleve> eleves = ControllerEleve.GetAllEleves();
             CbEleve.DisplayMember = "Text";
             CbEleve.ValueMember = "Value";
             int i = 0;
@@ -64,7 +64,7 @@ namespace GestionClasse.Views
 
         private void LoadMatiereComboBox()
         {
-            List<ClsMatiere> matieres = matController.GetAllMatieres();
+            List<ClsMatiere> matieres = ControllerMatiere.GetAllMatieres();
             CbMatiere.DisplayMember = "Text";
             CbMatiere.ValueMember = "Value";
             int i = 0;
@@ -79,7 +79,7 @@ namespace GestionClasse.Views
             TxtNom.Text = eleve.GetNom();
             TxtPrenom.Text = eleve.GetPrenom();
             TxtSexe.Text = eleve.GetSexe();
-            ClsClasse classe = claController.GetClasseById(eleve.GetIdClasse());
+            ClsClasse classe = ControllerClasse.GetClasseById(eleve.GetIdClasse());
             TxtClasse.Text = classe.GetLabel();
         }
 
@@ -89,7 +89,7 @@ namespace GestionClasse.Views
 
             foreach (ClsNote note in notes)
             {
-                ClsMatiere matiere = matController.GetMatiere(note.GetIdMatiere());
+                ClsMatiere matiere = ControllerMatiere.GetMatiere(note.GetIdMatiere());
                 DgvNote.Rows.Add(note.GetId(), matiere.GetNom(), note.GetValeur(), "Modifier", "Supprimer");
             }
         }
@@ -98,7 +98,7 @@ namespace GestionClasse.Views
         {
             int IDSelectedEleve = (CbEleve.SelectedItem as dynamic).Value;
 
-            List<ClsEleve> LaListEleve = elController.GetAllEleves();
+            List<ClsEleve> LaListEleve = ControllerEleve.GetAllEleves();
             foreach (ClsEleve unEleve in LaListEleve)
             {
                 if (unEleve.GetId() == IDSelectedEleve)
@@ -106,7 +106,7 @@ namespace GestionClasse.Views
                     eleveId = unEleve.GetId();
                     UpdateEleveInformation(unEleve);
 
-                    List<ClsNote> notes = noController.Find(eleveId);
+                    List<ClsNote> notes = ControllerNote.Find(eleveId);
                     LoadNotesDataGridView(notes);
                 }
             }
@@ -128,10 +128,10 @@ namespace GestionClasse.Views
                 int noteId = (int)DgvNote.Rows[e.RowIndex].Cells["ColId"].Value;
 
                 // Supprimer la note de la base de données
-                noController.Delete(noteId);
+                ControllerNote.Delete(noteId);
 
                 // Recharger les notes dans le DataGridView
-                List<ClsNote> notes = noController.Find(eleveId);
+                List<ClsNote> notes = ControllerNote.Find(eleveId);
                 LoadNotesDataGridView(notes);
             }
         }
@@ -139,7 +139,7 @@ namespace GestionClasse.Views
         private void FormNoteUpdate_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Recharger les notes dans le DataGridView après la fermeture de la fenêtre de mise à jour
-            List<ClsNote> notes = noController.Find(eleveId);
+            List<ClsNote> notes = ControllerNote.Find(eleveId);
             LoadNotesDataGridView(notes);
         }
 
@@ -158,9 +158,9 @@ namespace GestionClasse.Views
             {
                 if (valeur >= 0 && valeur <= 20)
                 {
-                    noController.Create(valeur, eleveId, matiere);
+                    ControllerNote.Create(valeur, eleveId, matiere);
 
-                    List<ClsNote> notes = noController.Find(eleveId);
+                    List<ClsNote> notes = ControllerNote.Find(eleveId);
                     LoadNotesDataGridView(notes);
                 }
                 else

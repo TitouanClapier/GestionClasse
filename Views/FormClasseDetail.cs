@@ -16,27 +16,27 @@ namespace GestionClasse.Views
 {
     public partial class FormClasseDetail : Form
     {
-        private CtrlClasse claController;
-        private CtrlEleve elController;
-        private CtrlProfesseur profController;
+        private CtrlClasse ControllerClasse;
+        private CtrlEleve ControllerEleve;
+        private CtrlProfesseur ControllerProfesseur;
         private int classeId;
 
         public FormClasseDetail(int id)
         {
             InitializeComponent();
-            claController = new CtrlClasse();
-            elController = new CtrlEleve();
-            profController = new CtrlProfesseur();
+            ControllerClasse = new CtrlClasse();
+            ControllerEleve = new CtrlEleve();
+            ControllerProfesseur = new CtrlProfesseur();
             classeId = id;
         }
 
         private void FormClassDetail_Load(object sender, EventArgs e)
         {
-            ClsClasse classe = claController.GetClasseById(classeId);
+            ClsClasse classe = ControllerClasse.GetClasseById(classeId);
             if (classe != null)
             {
                 TxtLabel.Text = classe.GetLabel();
-                ClsProfesseur profPrincipal = profController.GetProfesseurById(classe.GetIdProfPrincipale());
+                ClsProfesseur profPrincipal = ControllerProfesseur.GetProfesseurById(classe.GetIdProfPrincipale());
                 if (profPrincipal != null)
                 {
                     TxtProf.Text = profPrincipal.GetNom() + " " + profPrincipal.GetPrenom();
@@ -49,7 +49,7 @@ namespace GestionClasse.Views
 
         private void LoadElevesDataGridView()
         {
-            List<ClsEleve> eleves = elController.GetElevesByClasse(classeId);
+            List<ClsEleve> eleves = ControllerEleve.GetElevesByClasse(classeId);
             DgvEleve.Rows.Clear();
 
             foreach (ClsEleve eleve in eleves)
@@ -60,7 +60,7 @@ namespace GestionClasse.Views
 
         private void LoadElevesComboBox()
         {
-            List<ClsEleve> eleves = elController.GetAllEleves();
+            List<ClsEleve> eleves = ControllerEleve.GetAllEleves();
             CbEleve.DisplayMember = "Text";
             CbEleve.ValueMember = "Value";
 
@@ -74,7 +74,7 @@ namespace GestionClasse.Views
         private void CbEleve_SelectedIndexChanged(object sender, EventArgs e)
         {
             int IDSelectedEleve = (CbEleve.SelectedItem as dynamic).Value;
-            List<ClsEleve> LaListEleve = elController.GetAllEleves();
+            List<ClsEleve> LaListEleve = ControllerEleve.GetAllEleves();
             foreach (ClsEleve unEleve in LaListEleve)
             {
                 if (unEleve.GetId() == IDSelectedEleve)
@@ -94,7 +94,7 @@ namespace GestionClasse.Views
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             int idEleve = (CbEleve.SelectedItem as dynamic).Value;
-            ClsEleve eleve = elController.GetEleveById(idEleve);
+            ClsEleve eleve = ControllerEleve.GetEleveById(idEleve);
 
             if (eleve != null)
             {
@@ -103,7 +103,7 @@ namespace GestionClasse.Views
                 if (result == DialogResult.Yes)
                 {
                     eleve.SetIdClasse(classeId);
-                    elController.UpdateEleve(eleve.GetId(), eleve.GetNom(), eleve.GetPrenom(), eleve.GetSexe(), classeId);
+                    ControllerEleve.UpdateEleve(eleve.GetId(), eleve.GetNom(), eleve.GetPrenom(), eleve.GetSexe(), classeId);
                     MessageBox.Show("L'élève a été ajouté à la classe avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadElevesDataGridView();
                 }

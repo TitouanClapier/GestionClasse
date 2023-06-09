@@ -1,5 +1,6 @@
 ﻿using GestionClasse.Models;
 using GestionClasse.Repository;
+using GestionClasse.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,20 +9,20 @@ namespace GestionClasse.Views
 {
     public partial class FormListClasse : Form
     {
-        private RepoClasse claRepository;
-        private RepoProfesseur profRepository;
+        private CtrlClasse claRepository;
+        private CtrlProfesseur ControllerProfesseur;
 
         public FormListClasse()
         {
             InitializeComponent();
-            claRepository = new RepoClasse();
-            profRepository = new RepoProfesseur();
+            claRepository = new CtrlClasse();
+            ControllerProfesseur = new CtrlProfesseur();
         }
 
         private void FormListClasse_Load(object sender, EventArgs e)
         {
             // Charger les données des classes dans le DataGridView
-            List<ClsClasse> classes = claRepository.FindAll();
+            List<ClsClasse> classes = claRepository.GetAllClasses();
             LoadClassesDataGridView(classes);
         }
 
@@ -31,7 +32,7 @@ namespace GestionClasse.Views
 
             foreach (ClsClasse classe in classes)
             {
-                ClsProfesseur professeurPrincipal = profRepository.Find(classe.GetIdProfPrincipale());
+                ClsProfesseur professeurPrincipal = ControllerProfesseur.Find(classe.GetIdProfPrincipale());
                 string nomPrenomProfesseurPrincipal = professeurPrincipal != null ? $"{professeurPrincipal.GetPrenom()} {professeurPrincipal.GetNom()}" : "";
 
                 DgvClasse.Rows.Add(classe.GetIdClasse(), classe.GetLabel(), nomPrenomProfesseurPrincipal, "Voir");

@@ -10,41 +10,41 @@ namespace GestionClasse.Controllers
 {
     public class CtrlNote
     {
-        public RepoNote noRepository;
+        public RepoNote RepositoryNote;
 
         public CtrlNote()
         {
-            noRepository = new RepoNote();
+            RepositoryNote = new RepoNote();
         }
 
         public List<ClsNote> FindAll()
         {
-            return noRepository.FindAll();
+            return RepositoryNote.FindAll();
         }
 
         public void Create(int idEleve, int idMatiere, int valeur)
         {
-            noRepository.Create(idEleve, idMatiere, valeur);
+            RepositoryNote.Create(idEleve, idMatiere, valeur);
         }
 
         public void Delete(int idNote)
         {
-            noRepository.Delete(idNote);
+            RepositoryNote.Delete(idNote);
         }
 
         public void Update(int idNote, int idEleve, int idMatiere, int valeur)
         {
-            noRepository.Update(idNote, idEleve, idMatiere, valeur);
+            RepositoryNote.Update(idNote, idEleve, idMatiere, valeur);
         }
 
         public List<ClsNote> Find(int id)
         {
-            return noRepository.Find(id);
+            return RepositoryNote.Find(id);
         }
 
         public ClsNote GetNoteById(int id)
         {
-            return noRepository.GetNoteById(id);
+            return RepositoryNote.GetNoteById(id);
         }
     }
 }

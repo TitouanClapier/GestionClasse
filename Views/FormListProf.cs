@@ -9,20 +9,20 @@ namespace GestionClasse.Views
 {
     public partial class FormListProf : Form
     {
-        private CtrlProfesseur profController;
-        private RepoMatiere matiereRepository;
+        private CtrlProfesseur ControllerProfesseur;
+        private CtrlMatiere ControllerMatiere;
 
         public FormListProf()
         {
             InitializeComponent();
-            profController = new CtrlProfesseur();
-            matiereRepository = new RepoMatiere();
+            ControllerProfesseur = new CtrlProfesseur();
+            ControllerMatiere = new CtrlMatiere();
         }
 
         private void FormListProf_Load(object sender, EventArgs e)
         {
             // Charger les données des professeurs dans le DataGridView
-            List<ClsProfesseur> professeurs = profController.GetAllProfesseurs();
+            List<ClsProfesseur> professeurs = ControllerProfesseur.GetAllProfesseurs();
             LoadProfesseursDataGridView(professeurs);
         }
 
@@ -33,7 +33,7 @@ namespace GestionClasse.Views
             foreach (ClsProfesseur professeur in professeurs)
             {
                 // Récupérer la matière du professeur en utilisant son ID
-                ClsMatiere matiere = matiereRepository.Find(professeur.GetId());
+                ClsMatiere matiere = ControllerMatiere.GetMatiere(professeur.GetId());
 
                 DgvProf.Rows.Add(professeur.GetId(), professeur.GetNom(), professeur.GetPrenom(), professeur.GetSexe(), matiere != null ? matiere.GetNom() : "");
             }
