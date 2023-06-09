@@ -49,12 +49,13 @@
             label6 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             label7 = new Label();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)DgvEleve).BeginInit();
             SuspendLayout();
             // 
             // TxtLabel
             // 
-            TxtLabel.Location = new Point(443, 25);
+            TxtLabel.Location = new Point(438, 99);
             TxtLabel.Name = "TxtLabel";
             TxtLabel.ReadOnly = true;
             TxtLabel.Size = new Size(125, 27);
@@ -62,18 +63,17 @@
             // 
             // TxtProf
             // 
-            TxtProf.Location = new Point(186, 25);
+            TxtProf.Location = new Point(181, 99);
             TxtProf.Name = "TxtProf";
             TxtProf.ReadOnly = true;
             TxtProf.Size = new Size(125, 27);
             TxtProf.TabIndex = 1;
-
             // 
             // DgvEleve
             // 
             DgvEleve.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DgvEleve.Columns.AddRange(new DataGridViewColumn[] { ColId, ColPrenom, ColNom, ColSexe });
-            DgvEleve.Location = new Point(94, 72);
+            DgvEleve.Location = new Point(89, 146);
             DgvEleve.Name = "DgvEleve";
             DgvEleve.RowHeadersWidth = 51;
             DgvEleve.RowTemplate.Height = 29;
@@ -114,7 +114,7 @@
             // 
             // BtnRetour
             // 
-            BtnRetour.Location = new Point(545, 451);
+            BtnRetour.Location = new Point(607, 531);
             BtnRetour.Name = "BtnRetour";
             BtnRetour.Size = new Size(94, 29);
             BtnRetour.TabIndex = 3;
@@ -124,7 +124,7 @@
             // 
             // BtnAdd
             // 
-            BtnAdd.Location = new Point(948, 338);
+            BtnAdd.Location = new Point(947, 386);
             BtnAdd.Name = "BtnAdd";
             BtnAdd.Size = new Size(181, 29);
             BtnAdd.TabIndex = 4;
@@ -135,7 +135,7 @@
             // CbEleve
             // 
             CbEleve.FormattingEnabled = true;
-            CbEleve.Location = new Point(948, 98);
+            CbEleve.Location = new Point(947, 146);
             CbEleve.Name = "CbEleve";
             CbEleve.Size = new Size(181, 28);
             CbEleve.TabIndex = 5;
@@ -143,7 +143,7 @@
             // 
             // TxtPrenom
             // 
-            TxtPrenom.Location = new Point(948, 146);
+            TxtPrenom.Location = new Point(947, 194);
             TxtPrenom.Name = "TxtPrenom";
             TxtPrenom.ReadOnly = true;
             TxtPrenom.Size = new Size(181, 27);
@@ -151,7 +151,7 @@
             // 
             // TxtNom
             // 
-            TxtNom.Location = new Point(948, 193);
+            TxtNom.Location = new Point(947, 241);
             TxtNom.Name = "TxtNom";
             TxtNom.ReadOnly = true;
             TxtNom.Size = new Size(181, 27);
@@ -159,7 +159,7 @@
             // 
             // TxtSexe
             // 
-            TxtSexe.Location = new Point(948, 250);
+            TxtSexe.Location = new Point(947, 298);
             TxtSexe.Name = "TxtSexe";
             TxtSexe.ReadOnly = true;
             TxtSexe.Size = new Size(181, 27);
@@ -168,7 +168,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(865, 147);
+            label1.Location = new Point(864, 195);
             label1.Name = "label1";
             label1.Size = new Size(60, 20);
             label1.TabIndex = 9;
@@ -177,7 +177,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(863, 193);
+            label2.Location = new Point(862, 241);
             label2.Name = "label2";
             label2.Size = new Size(42, 20);
             label2.TabIndex = 10;
@@ -186,7 +186,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(865, 253);
+            label3.Location = new Point(864, 301);
             label3.Name = "label3";
             label3.Size = new Size(40, 20);
             label3.TabIndex = 11;
@@ -195,7 +195,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(375, 25);
+            label4.Location = new Point(370, 99);
             label4.Name = "label4";
             label4.Size = new Size(62, 20);
             label4.TabIndex = 12;
@@ -204,7 +204,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(26, 25);
+            label5.Location = new Point(7, 102);
             label5.Name = "label5";
             label5.Size = new Size(154, 20);
             label5.TabIndex = 13;
@@ -213,7 +213,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(865, 101);
+            label6.Location = new Point(864, 149);
             label6.Name = "label6";
             label6.Size = new Size(53, 20);
             label6.TabIndex = 14;
@@ -223,17 +223,28 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(607, 21);
+            label7.Location = new Point(285, 20);
             label7.Name = "label7";
             label7.Size = new Size(173, 28);
             label7.TabIndex = 15;
             label7.Text = "Details de la classe";
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(947, 72);
+            label8.Name = "label8";
+            label8.Size = new Size(154, 28);
+            label8.TabIndex = 16;
+            label8.Text = "Ajout d'un éleve";
+            // 
             // FormClasseDetail
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1186, 513);
+            ClientSize = new Size(1186, 572);
+            Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -281,5 +292,6 @@
         private Label label6;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Label label7;
+        private Label label8;
     }
 }

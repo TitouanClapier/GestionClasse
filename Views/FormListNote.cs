@@ -16,21 +16,21 @@ namespace GestionClasse.Views
 {
     public partial class FormListNote : Form
     {
-        private EleveController elController;
-        private NoteController noController;
-        private ClasseController claController;
-        private MatiereController matController;
-        private NoteRepository noteRepository;
+        private CtrlEleve elController;
+        private CtrlNote noController;
+        private CtrlClasse claController;
+        private CtrlMatiere matController;
+        private RepoNote noteRepository;
         private int eleveId;
 
         public FormListNote(int id)
         {
             InitializeComponent();
-            elController = new EleveController();
-            noController = new NoteController();
-            claController = new ClasseController();
-            matController = new MatiereController();
-            noteRepository = new NoteRepository();
+            elController = new CtrlEleve();
+            noController = new CtrlNote();
+            claController = new CtrlClasse();
+            matController = new CtrlMatiere();
+            noteRepository = new RepoNote();
             eleveId = id;
         }
 
@@ -39,24 +39,24 @@ namespace GestionClasse.Views
             LoadElevesComboBox(); // Charger la ComboBox des élèves
             LoadMatiereComboBox(); // Charger la ComboBox des matières
 
-            Eleve eleve = elController.GetEleveById(eleveId);
+            ClsEleve eleve = elController.GetEleveById(eleveId);
             if (eleve != null)
             {
                 CbEleve.SelectedItem = eleve; // Sélectionner l'élève dans la ComboBox
                 UpdateEleveInformation(eleve); // Mettre à jour les informations de l'élève
             }
 
-            List<Note> notes = noController.Find(eleveId);
+            List<ClsNote> notes = noController.Find(eleveId);
             LoadNotesDataGridView(notes);
         }
 
         private void LoadElevesComboBox()
         {
-            List<Eleve> eleves = elController.GetAllEleves();
+            List<ClsEleve> eleves = elController.GetAllEleves();
             CbEleve.DisplayMember = "Text";
             CbEleve.ValueMember = "Value";
             int i = 0;
-            foreach (Eleve uneleve in eleves)
+            foreach (ClsEleve uneleve in eleves)
             {
                 CbEleve.Items.Add(new { Text = uneleve.GetPrenom() + " " + uneleve.GetNom(), Value = uneleve.GetId() });
             }
@@ -64,32 +64,32 @@ namespace GestionClasse.Views
 
         private void LoadMatiereComboBox()
         {
-            List<Matiere> matieres = matController.GetAllMatieres();
+            List<ClsMatiere> matieres = matController.GetAllMatieres();
             CbMatiere.DisplayMember = "Text";
             CbMatiere.ValueMember = "Value";
             int i = 0;
-            foreach (Matiere unematiere in matieres)
+            foreach (ClsMatiere unematiere in matieres)
             {
                 CbMatiere.Items.Add(new { Text = unematiere.GetNom(), Value = unematiere.GetId() });
             }
         }
 
-        private void UpdateEleveInformation(Eleve eleve)
+        private void UpdateEleveInformation(ClsEleve eleve)
         {
             TxtNom.Text = eleve.GetNom();
             TxtPrenom.Text = eleve.GetPrenom();
             TxtSexe.Text = eleve.GetSexe();
-            Classe classe = claController.GetClasseById(eleve.GetIdClasse());
+            ClsClasse classe = claController.GetClasseById(eleve.GetIdClasse());
             TxtClasse.Text = classe.GetLabel();
         }
 
-        private void LoadNotesDataGridView(List<Note> notes)
+        private void LoadNotesDataGridView(List<ClsNote> notes)
         {
             DgvNote.Rows.Clear();
 
-            foreach (Note note in notes)
+            foreach (ClsNote note in notes)
             {
-                Matiere matiere = matController.GetMatiere(note.GetIdMatiere());
+                ClsMatiere matiere = matController.GetMatiere(note.GetIdMatiere());
                 DgvNote.Rows.Add(note.GetId(), matiere.GetNom(), note.GetValeur(), "Modifier", "Supprimer");
             }
         }
@@ -98,15 +98,15 @@ namespace GestionClasse.Views
         {
             int IDSelectedEleve = (CbEleve.SelectedItem as dynamic).Value;
 
-            List<Eleve> LaListEleve = elController.GetAllEleves();
-            foreach (Eleve unEleve in LaListEleve)
+            List<ClsEleve> LaListEleve = elController.GetAllEleves();
+            foreach (ClsEleve unEleve in LaListEleve)
             {
                 if (unEleve.GetId() == IDSelectedEleve)
                 {
                     eleveId = unEleve.GetId();
                     UpdateEleveInformation(unEleve);
 
-                    List<Note> notes = noController.Find(eleveId);
+                    List<ClsNote> notes = noController.Find(eleveId);
                     LoadNotesDataGridView(notes);
                 }
             }
@@ -131,7 +131,7 @@ namespace GestionClasse.Views
                 noController.Delete(noteId);
 
                 // Recharger les notes dans le DataGridView
-                List<Note> notes = noController.Find(eleveId);
+                List<ClsNote> notes = noController.Find(eleveId);
                 LoadNotesDataGridView(notes);
             }
         }
@@ -139,7 +139,7 @@ namespace GestionClasse.Views
         private void FormNoteUpdate_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Recharger les notes dans le DataGridView après la fermeture de la fenêtre de mise à jour
-            List<Note> notes = noController.Find(eleveId);
+            List<ClsNote> notes = noController.Find(eleveId);
             LoadNotesDataGridView(notes);
         }
 
@@ -160,7 +160,7 @@ namespace GestionClasse.Views
                 {
                     noController.Create(valeur, eleveId, matiere);
 
-                    List<Note> notes = noController.Find(eleveId);
+                    List<ClsNote> notes = noController.Find(eleveId);
                     LoadNotesDataGridView(notes);
                 }
                 else

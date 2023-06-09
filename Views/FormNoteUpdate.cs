@@ -18,23 +18,23 @@ namespace GestionClasse.Views
     {
         private int noteId;
         private int eleveId;
-        private NoteController noteController;
-        private MatiereController matiereController;
+        private CtrlNote noteController;
+        private CtrlMatiere matiereController;
 
         public FormNoteUpdate(int id)
         {
             InitializeComponent();
 
             noteId = id;
-            noteController = new NoteController();
-            matiereController = new MatiereController();
+            noteController = new CtrlNote();
+            matiereController = new CtrlMatiere();
 
             // Charger les matières dans la ComboBox
             LoadMatiereComboBox();
 
             // Récupérer la note et la matière correspondante
-            Note note = noteController.GetNoteById(noteId);
-            Matiere matiere = matiereController.GetMatiere(note.GetIdMatiere());
+            ClsNote note = noteController.GetNoteById(noteId);
+            ClsMatiere matiere = matiereController.GetMatiere(note.GetIdMatiere());
 
             // Trouver l'index de l'élément dans la ComboBox
             int index = CbMatiere.FindStringExact(matiere.GetNom());
@@ -51,8 +51,8 @@ namespace GestionClasse.Views
         private void FormNoteUpdate_Load(object sender, EventArgs e)
         {
             // Charger les informations de la note à partir de la base de données
-            NoteController noteController = new NoteController();
-            Note note = noteController.GetNoteById(noteId);
+            CtrlNote noteController = new CtrlNote();
+            ClsNote note = noteController.GetNoteById(noteId);
 
             if (note != null)
             {
@@ -64,10 +64,10 @@ namespace GestionClasse.Views
 
         private void LoadMatiereComboBox()
         {
-            List<Matiere> matieres = matiereController.GetAllMatieres();
+            List<ClsMatiere> matieres = matiereController.GetAllMatieres();
             CbMatiere.DisplayMember = "Text";
             CbMatiere.ValueMember = "Value";
-            foreach (Matiere uneMatiere in matieres)
+            foreach (ClsMatiere uneMatiere in matieres)
             {
                 CbMatiere.Items.Add(new { Text = uneMatiere.GetNom(), Value = uneMatiere.GetId() });
             }
@@ -98,7 +98,7 @@ namespace GestionClasse.Views
                 return;
             }
 
-            Note existingNote = noteController.GetNoteById(noteId);
+            ClsNote existingNote = noteController.GetNoteById(noteId);
             if (existingNote == null)
             {
                 MessageBox.Show("La note spécifiée n'existe pas.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);

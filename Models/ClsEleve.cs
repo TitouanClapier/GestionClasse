@@ -2,7 +2,7 @@
 
 namespace GestionClasse.Models
 {
-    public class Eleve
+    public class ClsEleve
     {
         private int _idEleve;
         private string _nom;
@@ -10,7 +10,7 @@ namespace GestionClasse.Models
         private string _sexe;
         private int _idClasse;
 
-        public Eleve(int idEleve, string nom, string prenom, string sexe, int idClasse)
+        public ClsEleve(int idEleve, string nom, string prenom, string sexe, int idClasse)
         {
             _idEleve = idEleve;
             _nom = nom;

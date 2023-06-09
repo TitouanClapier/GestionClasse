@@ -6,16 +6,16 @@ using System.Data.SQLite;
 
 namespace GestionClasse.Repository
 {
-    public class ClasseRepository
+    public class RepoClasse
     {
-        public ClasseRepository()
+        public RepoClasse()
         {
 
         }
 
-        public List<Classe> FindAll()
+        public List<ClsClasse> FindAll()
         {
-            List<Classe> lesClasses = new List<Classe>();
+            List<ClsClasse> lesClasses = new List<ClsClasse>();
 
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -35,7 +35,7 @@ namespace GestionClasse.Repository
                             string label = Convert.ToString(reader["C_Label"]);
                             int idProfPrincipale = Convert.ToInt32(reader["C_FK_P_ID"]);
 
-                            lesClasses.Add(new Classe(idClasse, label, idProfPrincipale));
+                            lesClasses.Add(new ClsClasse(idClasse, label, idProfPrincipale));
                         }
                     }
                 }
@@ -109,7 +109,7 @@ namespace GestionClasse.Repository
             }
         }
 
-        public Classe GetInfo(int id)
+        public ClsClasse GetInfo(int id)
         {
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -129,7 +129,7 @@ namespace GestionClasse.Repository
                             string label = Convert.ToString(reader["C_Label"]);
                             int idProfPrincipale = Convert.ToInt32(reader["C_FK_P_ID"]);
 
-                            return new Classe(id, label, idProfPrincipale);
+                            return new ClsClasse(id, label, idProfPrincipale);
                         }
                     }
                 }

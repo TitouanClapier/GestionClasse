@@ -93,7 +93,7 @@
             // 
             // BtnRetour
             // 
-            BtnRetour.Location = new Point(543, 429);
+            BtnRetour.Location = new Point(539, 413);
             BtnRetour.Name = "BtnRetour";
             BtnRetour.Size = new Size(94, 29);
             BtnRetour.TabIndex = 23;

@@ -5,16 +5,16 @@ using System.Data.SQLite;
 
 namespace GestionClasse.Repository
 {
-    public class NoteRepository
+    public class RepoNote
     {
-        public NoteRepository()
+        public RepoNote()
         {
 
         }
 
-        public List<Note> FindAll()
+        public List<ClsNote> FindAll()
         {
-            List<Note> lesNotes = new List<Note>();
+            List<ClsNote> lesNotes = new List<ClsNote>();
 
             string connectionString = "Data Source=../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -33,7 +33,7 @@ namespace GestionClasse.Repository
                             int idEleve = Convert.ToInt32(reader["IdEleve"]);
                             int idMatiere = Convert.ToInt32(reader["IdMatiere"]);
 
-                            lesNotes.Add(new Note(idNote, valeur, idEleve, idMatiere));
+                            lesNotes.Add(new ClsNote(idNote, valeur, idEleve, idMatiere));
                         }
                     }
                 }
@@ -44,9 +44,9 @@ namespace GestionClasse.Repository
             return lesNotes;
         }
 
-        public List<Note> Find(int id)
+        public List<ClsNote> Find(int id)
         {
-            List<Note> lesNotes = new List<Note>();
+            List<ClsNote> lesNotes = new List<ClsNote>();
 
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -66,7 +66,7 @@ namespace GestionClasse.Repository
                             int valeur = Convert.ToInt32(reader["N_Valeur"]);
                             int idMatiere = Convert.ToInt32(reader["N_FK_M_ID"]);
 
-                            lesNotes.Add(new Note(idNote, valeur, id, idMatiere));
+                            lesNotes.Add(new ClsNote(idNote, valeur, id, idMatiere));
                         }
                     }
                 }
@@ -142,7 +142,7 @@ namespace GestionClasse.Repository
             }
         }
 
-        public Note GetInfo(int idNote)
+        public ClsNote GetInfo(int idNote)
         {
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -163,7 +163,7 @@ namespace GestionClasse.Repository
                             int idEleve = Convert.ToInt32(reader["N_FK_E_ID"]);
                             int idMatiere = Convert.ToInt32(reader["N_FK_M_ID"]);
 
-                            return new Note(idNote, valeur, idEleve, idMatiere);
+                            return new ClsNote(idNote, valeur, idEleve, idMatiere);
                         }
                     }
                 }
@@ -174,7 +174,7 @@ namespace GestionClasse.Repository
             return null;
         }
 
-        public Note GetNoteById(int idNote)
+        public ClsNote GetNoteById(int idNote)
         {
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -195,7 +195,7 @@ namespace GestionClasse.Repository
                             int idEleve = Convert.ToInt32(reader["N_FK_E_ID"]);
                             int idMatiere = Convert.ToInt32(reader["N_FK_M_ID"]);
 
-                            return new Note(idNote, valeur, idEleve, idMatiere);
+                            return new ClsNote(idNote, valeur, idEleve, idMatiere);
                         }
                     }
                 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace GestionClasse.Models
 {
-    public class Classe
+    public class ClsClasse
     {
         private int _idClasse;
         private string _label;
         private int _idProfPrincipale;
 
-        public Classe(int idClasse, string label, int idProfPrincipale)
+        public ClsClasse(int idClasse, string label, int idProfPrincipale)
         {
             _idClasse = idClasse;
             _label = label;

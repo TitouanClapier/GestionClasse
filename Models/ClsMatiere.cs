@@ -2,18 +2,18 @@
 
 namespace GestionClasse.Models
 {
-    public class Matiere
+    public class ClsMatiere
     {
         private int _idMatiere;
         private string _nom;
         private int _idProf;
 
-        public Matiere()
+        public ClsMatiere()
         {
 
         }
 
-        public Matiere(int idMatiere, string nom, int idProf)
+        public ClsMatiere(int idMatiere, string nom, int idProf)
         {
             _idMatiere = idMatiere;
             _nom = nom;

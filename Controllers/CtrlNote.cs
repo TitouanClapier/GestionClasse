@@ -8,16 +8,16 @@ using GestionClasse.Repository;
 
 namespace GestionClasse.Controllers
 {
-    public class NoteController
+    public class CtrlNote
     {
-        public NoteRepository noRepository;
+        public RepoNote noRepository;
 
-        public NoteController()
+        public CtrlNote()
         {
-            noRepository = new NoteRepository();
+            noRepository = new RepoNote();
         }
 
-        public List<Note> FindAll()
+        public List<ClsNote> FindAll()
         {
             return noRepository.FindAll();
         }
@@ -37,12 +37,12 @@ namespace GestionClasse.Controllers
             noRepository.Update(idNote, idEleve, idMatiere, valeur);
         }
 
-        public List<Note> Find(int id)
+        public List<ClsNote> Find(int id)
         {
             return noRepository.Find(id);
         }
 
-        public Note GetNoteById(int id)
+        public ClsNote GetNoteById(int id)
         {
             return noRepository.GetNoteById(id);
         }

@@ -5,21 +5,21 @@ using System.Collections.Generic;
 
 namespace GestionClasse.Controllers
 {
-    public class ClasseController
+    public class CtrlClasse
     {
-        private ClasseRepository claRepository;
+        private RepoClasse claRepository;
 
-        public ClasseController()
+        public CtrlClasse()
         {
-            claRepository = new ClasseRepository();
+            claRepository = new RepoClasse();
         }
 
-        public List<Classe> GetAllClasses()
+        public List<ClsClasse> GetAllClasses()
         {
             return claRepository.FindAll();
         }
 
-        public Classe GetClasseById(int id)
+        public ClsClasse GetClasseById(int id)
         {
             return claRepository.GetInfo(id);
         }

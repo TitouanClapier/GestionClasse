@@ -14,29 +14,29 @@ namespace GestionClasse.Views
 {
     public partial class FormListEleve : Form
     {
-        private EleveController eleveController;
-        private ClasseController classeController;
+        private CtrlEleve eleveController;
+        private CtrlClasse classeController;
 
         public FormListEleve()
         {
             InitializeComponent();
-            eleveController = new EleveController();
-            classeController = new ClasseController();
+            eleveController = new CtrlEleve();
+            classeController = new CtrlClasse();
         }
 
         private void FormListEleve_Load(object sender, EventArgs e)
         {
-            List<Eleve> eleves = eleveController.GetAllEleves();
+            List<ClsEleve> eleves = eleveController.GetAllEleves();
             LoadElevesDataGridView(eleves);
         }
 
-        private void LoadElevesDataGridView(List<Eleve> eleves)
+        private void LoadElevesDataGridView(List<ClsEleve> eleves)
         {
             DgvEleve.Rows.Clear();
 
-            foreach (Eleve eleve in eleves)
+            foreach (ClsEleve eleve in eleves)
             {
-                Classe classe = classeController.GetClasseById(eleve.GetIdClasse());
+                ClsClasse classe = classeController.GetClasseById(eleve.GetIdClasse());
                 DgvEleve.Rows.Add(eleve.GetId(), eleve.GetNom(), eleve.GetPrenom(), eleve.GetSexe(), classe.GetLabel(), "Voir", "Notes");
             }
         }
@@ -51,13 +51,13 @@ namespace GestionClasse.Views
             if (e.RowIndex >= 0)
             {
                 int eleveId = Convert.ToInt32(DgvEleve.Rows[e.RowIndex].Cells["ColId"].Value);
-                Eleve eleve = eleveController.GetEleveById(eleveId);
+                ClsEleve eleve = eleveController.GetEleveById(eleveId);
 
                 if (eleve != null)
                 {
                     if (e.ColumnIndex == DgvEleve.Columns["ColClasse"].Index)
                     {
-                        Classe classe = classeController.GetClasseById(eleve.GetIdClasse());
+                        ClsClasse classe = classeController.GetClasseById(eleve.GetIdClasse());
                         MessageBox.Show($"Nom : {eleve.GetNom()}\nPrénom : {eleve.GetPrenom()}\nSexe : {eleve.GetSexe()}\nClasse : {classe.GetLabel()}", "Détails de l'élève");
                     }
                     else if (e.ColumnIndex == DgvEleve.Columns["ColBtnNote"].Index)

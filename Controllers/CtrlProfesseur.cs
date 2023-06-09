@@ -5,22 +5,22 @@ using System.Collections.Generic;
 
 namespace GestionClasse.Controllers
 {
-    public class ProfesseurController
+    public class CtrlProfesseur
     {
-        private ProfesseurRepository profRepository;
+        private RepoProfesseur profRepository;
 
-        public ProfesseurController()
+        public CtrlProfesseur()
         {
-            profRepository = new ProfesseurRepository();
+            profRepository = new RepoProfesseur();
         }
 
-        public List<Professeur> GetAllProfesseurs()
+        public List<ClsProfesseur> GetAllProfesseurs()
         {
             //MessageBox.Show("test Controller");
             return profRepository.FindAll();
         }
 
-        public Professeur GetProfesseurById(int id)
+        public ClsProfesseur GetProfesseurById(int id)
         {
             return profRepository.GetInfo(id);
         }

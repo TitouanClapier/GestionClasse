@@ -6,21 +6,21 @@ using System.Collections.Generic;
 
 namespace GestionClasse.Controllers
 {
-    public class MatiereController
+    public class CtrlMatiere
     {
-        private MatiereRepository matrepository;
+        private RepoMatiere matrepository;
 
-        public MatiereController()
+        public CtrlMatiere()
         {
-            matrepository = new MatiereRepository();
+            matrepository = new RepoMatiere();
         }
 
-        public List<Matiere> GetAllMatieres()
+        public List<ClsMatiere> GetAllMatieres()
         {
             return matrepository.FindAll();
         }
 
-        public Matiere GetMatiere(int id)
+        public ClsMatiere GetMatiere(int id)
         {
             return matrepository.Find(id);
         }
@@ -40,7 +40,7 @@ namespace GestionClasse.Controllers
             matrepository.Update(idMatiere, nom, idProf);
         }
 
-        public Matiere GetMatiereInfo(int idMatiere)
+        public ClsMatiere GetMatiereInfo(int idMatiere)
         {
             return matrepository.GetInfo(idMatiere);
         }

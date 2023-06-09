@@ -14,31 +14,31 @@ namespace GestionClasse.Views
 {
     public partial class FormListMatiere : Form
     {
-        private MatiereController matController;
-        private ProfesseurController profController;
+        private CtrlMatiere matController;
+        private CtrlProfesseur profController;
 
         public FormListMatiere()
         {
             InitializeComponent();
-            matController = new MatiereController();
-            profController = new ProfesseurController();
+            matController = new CtrlMatiere();
+            profController = new CtrlProfesseur();
         }
 
         private void FormListMatiere_Load(object sender, EventArgs e)
         {
             // Charger les données des matieres dans le DataGridView
-            List<Matiere> matieres = matController.GetAllMatieres();
+            List<ClsMatiere> matieres = matController.GetAllMatieres();
             LoadMatieresDataGridView(matieres);
         }
 
-        private void LoadMatieresDataGridView(List<Matiere> matieres)
+        private void LoadMatieresDataGridView(List<ClsMatiere> matieres)
         {
             DgvMatiere.Rows.Clear();
 
-            foreach (Matiere matiere in matieres)
+            foreach (ClsMatiere matiere in matieres)
             {
                 //MessageBox.Show(Convert.ToString(matiere.GetIdProf()));
-                Professeur professeur = profController.GetProfesseurById(matiere.GetIdProf());
+                ClsProfesseur professeur = profController.GetProfesseurById(matiere.GetIdProf());
                 string prenomNomProfesseur = professeur != null ? $"{professeur.GetPrenom()} {professeur.GetNom()}" : "";
 
                 DgvMatiere.Rows.Add(matiere.GetId(), matiere.GetNom(), prenomNomProfesseur);

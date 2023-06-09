@@ -6,40 +6,36 @@ using System.Data.SQLite;
 
 namespace GestionClasse.Repository
 {
-    public class ProfesseurRepository
+    public class RepoEleve
     {
-        public ProfesseurRepository()
+        public RepoEleve()
         {
 
         }
 
-        public List<Professeur> FindAll()
+        public List<ClsEleve> FindAll()
         {
-            //MessageBox.Show("test");
-            List<Professeur> lesProfesseurs = new List<Professeur>();
+            List<ClsEleve> lesEleves = new List<ClsEleve>();
 
-
-            // string connectionString = "Data Source= " + Application.StartupPath + "../../../DBgestionclasse.db";
             string connectionString = "Data Source=../../../DBgestionclasse.db";
-
-            //MessageBox.Show(connectionString);
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
-                string selectSql = "SELECT * FROM Professeurs;";
+                string selectSql = "SELECT * FROM Eleves ORDER BY E_Nom, E_Prenom;";
                 using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
                 {
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            int id = Convert.ToInt32(reader["P_Id"]);
-                            string nom = Convert.ToString(reader["P_Nom"]);
-                            string prenom = Convert.ToString(reader["P_Prenom"]);
-                            string sexe = Convert.ToString(reader["P_Sexe"]);
+                            int id = Convert.ToInt32(reader["E_ID"]);
+                            string nom = Convert.ToString(reader["E_Nom"]);
+                            string prenom = Convert.ToString(reader["E_Prenom"]);
+                            string sexe = Convert.ToString(reader["E_Sexe"]);
+                            int idClasse = Convert.ToInt32(reader["E_FK_C_ID"]);
 
-                            lesProfesseurs.Add(new Professeur(id, nom, prenom, sexe));
+                            lesEleves.Add(new ClsEleve(id, nom, prenom, sexe, idClasse));
                         }
                     }
                 }
@@ -47,32 +43,34 @@ namespace GestionClasse.Repository
                 connection.Close();
             }
 
-            return lesProfesseurs;
+            return lesEleves;
         }
 
-        public Professeur Find(int id)
+        public List<ClsEleve> GetElevesByClasse(int classeId)
         {
-            Professeur professeur = null;
+            List<ClsEleve> eleves = new List<ClsEleve>();
 
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
-                string selectSql = "SELECT * FROM Professeurs WHERE P_Id = @Id;";
+                string selectSql = "SELECT * FROM Eleves WHERE E_FK_C_ID = @ClasseId ORDER BY E_Nom, E_Prenom;";
                 using (SQLiteCommand command = new SQLiteCommand(selectSql, connection))
                 {
-                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@ClasseId", classeId);
 
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
-                            string nom = Convert.ToString(reader["P_Nom"]);
-                            string prenom = Convert.ToString(reader["P_Prenom"]);
-                            string sexe = Convert.ToString(reader["P_Sexe"]);
+                            int idEleve = Convert.ToInt32(reader["E_ID"]);
+                            string nom = reader["E_Nom"].ToString();
+                            string prenom = reader["E_Prenom"].ToString();
+                            string sexe = reader["E_Sexe"].ToString();
+                            int idClasse = Convert.ToInt32(reader["E_FK_C_ID"]);
 
-                            professeur = new Professeur(id, nom, prenom, sexe);
+                            eleves.Add(new ClsEleve(idEleve, nom, prenom, sexe, idClasse));
                         }
                     }
                 }
@@ -80,15 +78,15 @@ namespace GestionClasse.Repository
                 connection.Close();
             }
 
-            return professeur;
+            return eleves;
         }
 
-        public void Create(string nom, string prenom, string sexe)
+        public void Create(string nom, string prenom, string sexe, int idClasse)
         {
-            string connectionString = "Data Source=../../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string insertSql = "INSERT INTO Professeurs (Nom, Prenom, Sexe) VALUES (@Nom, @Prenom, @Sexe)";
+                string insertSql = "INSERT INTO Eleve (Nom, Prenom, Sexe, IdClasse) VALUES (@Nom, @Prenom, @Sexe, @IdClasse)";
 
                 connection.Open();
 
@@ -97,6 +95,7 @@ namespace GestionClasse.Repository
                     command.Parameters.AddWithValue("@Nom", nom);
                     command.Parameters.AddWithValue("@Prenom", prenom);
                     command.Parameters.AddWithValue("@Sexe", sexe);
+                    command.Parameters.AddWithValue("@IdClasse", idClasse);
 
                     command.ExecuteNonQuery();
                 }
@@ -107,10 +106,10 @@ namespace GestionClasse.Repository
 
         public void Delete(int id)
         {
-            string connectionString = "Data Source=../../../DBgestionclasse.db";
+            string connectionString = "Data Source=../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string deleteSql = "DELETE FROM Professeurs WHERE IdProf = @Id";
+                string deleteSql = "DELETE FROM Eleve WHERE IdEleve = @Id";
 
                 connection.Open();
 
@@ -125,12 +124,12 @@ namespace GestionClasse.Repository
             }
         }
 
-        public void Update(int id, string nom, string prenom, string sexe)
+        public void Update(int id, string nom, string prenom, string sexe, int idClasse)
         {
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string updateSql = "UPDATE Professeurs SET Nom = @Nom, Prenom = @Prenom, Sexe = @Sexe WHERE IdProf = @Id;";
+                string updateSql = "UPDATE Eleves SET E_Nom = @Nom, E_Prenom = @Prenom, E_Sexe = @Sexe, E_FK_C_ID = @IdClasse WHERE E_ID = @Id";
 
                 connection.Open();
 
@@ -140,6 +139,7 @@ namespace GestionClasse.Repository
                     command.Parameters.AddWithValue("@Nom", nom);
                     command.Parameters.AddWithValue("@Prenom", prenom);
                     command.Parameters.AddWithValue("@Sexe", sexe);
+                    command.Parameters.AddWithValue("@IdClasse", idClasse);
 
                     command.ExecuteNonQuery();
                 }
@@ -148,13 +148,12 @@ namespace GestionClasse.Repository
             }
         }
 
-        public Professeur GetInfo(int id)
+        public ClsEleve GetInfo(int id)
         {
-            //MessageBox.Show(Convert.ToString(id));
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                string selectSql = "SELECT * FROM Professeurs WHERE P_ID = @Id;";
+                string selectSql = "SELECT * FROM Eleves WHERE E_ID = @Id";
 
                 connection.Open();
 
@@ -166,11 +165,12 @@ namespace GestionClasse.Repository
                     {
                         if (reader.Read())
                         {
-                            string nom = Convert.ToString(reader["P_Nom"]);
-                            string prenom = Convert.ToString(reader["P_Prenom"]);
-                            string sexe = Convert.ToString(reader["P_Sexe"]);
+                            string nom = Convert.ToString(reader["E_Nom"]);
+                            string prenom = Convert.ToString(reader["E_Prenom"]);
+                            string sexe = Convert.ToString(reader["E_Sexe"]);
+                            int idClasse = Convert.ToInt32(reader["E_FK_C_ID"]);
 
-                            return new Professeur(id, nom, prenom, sexe);
+                            return new ClsEleve(id, nom, prenom, sexe, idClasse);
                         }
                     }
                 }
@@ -178,7 +178,7 @@ namespace GestionClasse.Repository
                 connection.Close();
             }
 
-            return null;
+            return null; // Retourner null si aucune correspondance trouvée ou en cas d'erreur
         }
     }
 }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace GestionClasse.Models
 {
-    public class Professeur
+    public class ClsProfesseur
     {
         private int _idProf;
         private string _nom;
         private string _prenom;
         private string _sexe;
 
-        public Professeur(int idProf, string nom, string prenom, string sexe)
+        public ClsProfesseur(int idProf, string nom, string prenom, string sexe)
         {
             _idProf = idProf;
             _nom = nom;

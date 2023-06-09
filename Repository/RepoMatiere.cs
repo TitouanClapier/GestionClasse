@@ -6,16 +6,16 @@ using System.Data.SQLite;
 
 namespace GestionClasse.Repository
 {
-    public class MatiereRepository
+    public class RepoMatiere
     {
-        public MatiereRepository()
+        public RepoMatiere()
         {
 
         }
 
-        public List<Matiere> FindAll()
+        public List<ClsMatiere> FindAll()
         {
-            List<Matiere> matieres = new List<Matiere>();
+            List<ClsMatiere> matieres = new List<ClsMatiere>();
 
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -33,7 +33,7 @@ namespace GestionClasse.Repository
                             string nom = Convert.ToString(reader["M_Nom"]);
                             int idProf = Convert.ToInt32(reader["M_FK_P_ID"]);
 
-                            matieres.Add(new Matiere(idMatiere, nom, idProf));
+                            matieres.Add(new ClsMatiere(idMatiere, nom, idProf));
                         }
                     }
                 }
@@ -44,9 +44,9 @@ namespace GestionClasse.Repository
             return matieres;
         }
 
-        public Matiere Find(int id)
+        public ClsMatiere Find(int id)
         {
-            Matiere matiere = null;
+            ClsMatiere matiere = null;
 
             string connectionString = "Data Source=../../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -66,7 +66,7 @@ namespace GestionClasse.Repository
                             string nom = Convert.ToString(reader["M_Nom"]);
                             int idProf = Convert.ToInt32(reader["M_FK_P_ID"]);
 
-                            matiere = new Matiere(idMatiere, nom, idProf);
+                            matiere = new ClsMatiere(idMatiere, nom, idProf);
                         }
                     }
                 }
@@ -141,7 +141,7 @@ namespace GestionClasse.Repository
             }
         }
 
-        public Matiere GetInfo(int idMatiere)
+        public ClsMatiere GetInfo(int idMatiere)
         {
             string connectionString = "Data Source=../../DBgestionclasse.db";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -161,7 +161,7 @@ namespace GestionClasse.Repository
                             string nom = Convert.ToString(reader["Nom"]);
                             int idProf = Convert.ToInt32(reader["IdProf"]);
 
-                            return new Matiere(idMatiere, nom, idProf);
+                            return new ClsMatiere(idMatiere, nom, idProf);
                         }
                     }
                 }

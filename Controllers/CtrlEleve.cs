@@ -5,26 +5,26 @@ using System.Collections.Generic;
 
 namespace GestionClasse.Controllers
 {
-    public class EleveController
+    public class CtrlEleve
     {
-        private EleveRepository elRepository;
+        private RepoEleve elRepository;
 
-        public EleveController()
+        public CtrlEleve()
         {
-            elRepository = new EleveRepository();
+            elRepository = new RepoEleve();
         }
 
-        public List<Eleve> GetAllEleves()
+        public List<ClsEleve> GetAllEleves()
         {
             return elRepository.FindAll();
         }
 
-        public Eleve GetEleveById(int id)
+        public ClsEleve GetEleveById(int id)
         {
             return elRepository.GetInfo(id);
         }
 
-        public List<Eleve> GetElevesByClasse(int classeId)
+        public List<ClsEleve> GetElevesByClasse(int classeId)
         {
             return elRepository.GetElevesByClasse(classeId);
         }
@@ -46,7 +46,7 @@ namespace GestionClasse.Controllers
 
         public void UpdateClasse(int eleveId, int newClasseId)
         {
-            Eleve eleve = elRepository.GetInfo(eleveId);
+            ClsEleve eleve = elRepository.GetInfo(eleveId);
             if (eleve != null)
             {
                 eleve.SetIdClasse(newClasseId);

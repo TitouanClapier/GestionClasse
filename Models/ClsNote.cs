@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace GestionClasse.Models
 {
-    public class Note
+    public class ClsNote
     {
         private int _idNote;
         private int _valeur;
         private int _idEleve;
         private int _idMatiere;
 
-        public Note(int idNote, int valeur, int idEleve, int idMatiere)
+        public ClsNote(int idNote, int valeur, int idEleve, int idMatiere)
         {
             _idNote = idNote;
             _valeur = valeur;
